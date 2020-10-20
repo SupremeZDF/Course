@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+    <script src="../JS/layui/layui.js"></script>
+    <script src="../CSS/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="../JS/layui/css/layui.css" rel="stylesheet" />
+    <link href="../CSS/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="HTML/File.css" />
+    <script src="../JS/qrcode.js"></script>
+    <title>Document</title>
+    <style type="text/css">
+        /* div.panel,
+        p.flip {
+            margin: 0px;
+            padding: 5px;
+            text-align: center;
+            background: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+        
+        div.panel {
+            height: 120px;
+            display: none;
+            padding-left: 20px;
+            opacity: 1;
+        }
+        
+        .c {} */
+        /*         
+        #panel,
+        #flip {
+            padding: 5px;
+            text-align: center;
+            background-color: #e5eecc;
+            border: solid 1px #c3c3c3;
+        }
+        
+        #panel {
+            padding: 50px;
+            display: none;
+        } */
+        /* .c {
+            padding-left: 20px;
+            border: 10px solid red;
+            margin-left: 10px;
+        }
+        
+        .ancestors * {
+            display: block;
+            border: 2px solid lightgrey;
+            color: lightgrey;
+            padding: 5px;
+            margin: 15px;
+        } */
+        
+        .c {
+            visibility: hidden;
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="ancestors">
+    <!-- <p>如果您点击我，我会消失。</p>
+    <p>点击我，我会消失。</p>
+    <p>也要点击我哦。</p> -->
+
+    <!-- <p>这是一个段落。</p>
+    <button id="c">测试 jQuery</button> -->
+    <!-- <button type="button">隐藏</button>
+    <p>这是一个段落。</p>
+    <p>这是另一个段落。</p> -->
+    <!-- <div class="panel">
+        <p>W3School - 领先的 Web 技术教程站点</p>
+        <p>在 W3School，你可以找到你所需要的所有网站建设教程。</p>
+    </div>
+
+    <p class="flip">请点击这里</p> -->
+
+    <!-- <div style="background:#98bf21;height:100px;width:100px;position:absolute;">
+    </div>
+    <button id='d' style="position:absolute;">ssss</button> -->
+
+    <!-- <button id="stop">停止滑动</button>
+    <div id="flip">点击这里，向下滑动面板</div>
+    <div id="panel">Hello world!</div> -->
+    <!-- 
+    <div id="cc" >
+        dadasdas
+        <p>casdscd</p>
+    </div> -->
+
+    <!-- <p><a href="http://www.w3school.com.cn" id="w3s">W3School.com.cn</a></p>
+    <button>改变 href 和 title 值</button>
+    <p>请把鼠标指针移动到链接上，或者点击该链接，来查看已经改变的 href 值和已经设置的 title 值。</p> -->
+    <!-- 
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <ol>
+        <li>List item 1</li>
+        <li>List item 2</li>
+        <li>List item 3</li>
+    </ol>
+    <button id="btn1">追加文本</button>
+    <button id="btn2">追加列表项</button> -->
+
+    <!-- <div id="div1" style="height:100px;width:300px;border:1px solid black;background-color:yellow;">
+        This is some text in the div.
+        <p>This is a paragraph in the div.</p>
+        <p>This is another paragraph in the div.</p>
+    </div>
+
+    <br>
+    <button>删除 div 元素</button> -->
+    <!-- <button>显示文档和窗口的尺寸</button> -->
+
+    <!-- <div class="ancestors">
+        <div style="width:500px;">div (曾祖父)
+            <ul>ul (祖父)
+                <li>li (直接父)
+                    <span>span</span>
+                </li>
+            </ul>
+        </div>
+
+        <div style="width:500px;">div (祖父)
+            <p>p (直接父)
+                <span>span</span>
+            </p>
+        </div>
+    </div> -->
+
+    <!-- body (曾曾祖父)
+    <div style="width:500px;">div (曾祖父)
+        <ul>ul (祖父)
+            <li>li (直接父)
+                <span>span</span>
+            </li>
+        </ul>
+    </div> -->
+    <!-- greater than  da yu     less than  equal to greater than
+    less than     xiao yu
+    equal to deng yu -->
+    <!-- <input type="radio" name="cc" checked value="a" />a
+    <input type="radio" name="cc" value="b" />b
+    <input type="radio" name="cc" value="c" />c
+    <input type="radio" name="cc" value="d" />d -->
+    <!-- less  than , equal to , greater than  selected checked checkbox, enabled ,enabled,enabled,disabled -->
+    <!-- <button onclick="cc()">
+        ss
+    </button> -->
+    <!-- <h3>ssss</h3>
+    <p>This is a paragraph.</p>
+    <button class="btn1">Hide</button>
+    <button class="btn2">Show</button>
+    <h3>ssss</h3> -->
+
+    <!-- 书籍分类:
+    <select id="s1">
+        <option></option>
+        <option value="2"> 技术类</option>
+        <option value="11" selected>教学类</option>
+
+    </select>
+    <select id="s1">
+        <option></option>
+        <option value="2"> 技术类</option>
+        <option value="11" select>教学类</option>
+
+    </select> -->
+    <!-- 
+    <button id="c" onclick="cc(1)">sss</button>
+
+    <div style="width: 100px;height: 100px;border: 2px solid red;"></div> -->
+    <!-- 
+    <p>This is a paragraph.</p>
+    <p>This is another paragraph.</p>
+    <button>在每个 p 元素的结尾添加内容</button> -->
+
+    <button id="a">dasdsad</button>
+    <div id="qrcode"></div>
+    <script>
+        console.log(typeof($));
+
+        $("#a").click(function() {
+            // var qrcode = new QRCode(document.getElementById("qrcode"), {
+            //     text: "生成二维码的方法不止一种",
+            //     width: 128,
+            //     height: 128,
+            //     colorDark: "#f60",
+            //     colorLight: "#ccc",
+            //     correctLevel: 0 // 二维码结构复杂性 0~3
+            // });
+
+            new QRCode(document.getElementById("qrcode"), "https://www.baidu.com");
+        })
+
+        var page = 1;
+
+        function add(o) {
+            page++;
+            if (!$(o).hasClass('cur')) {
+                var html = '<div class="img"><img src="/img/load.png"/></div><div class="text">加载中...</div>';
+                $('.honormore').addClass('cur').html(html);
+
+                // 静态数据，接入后台删除---------------
+                setTimeout(function() {
+                    $.ajax({
+                        type: "post",
+                        url: "/AjaxAction/news.aspx?page=" + page + "&s=10&m=<%=strm%>",
+                        data: "",
+                        success: function(data) {
+                            var liArr = data.split("&&&&&");
+                            document.getElementById("honorbox").innerHTML = document.getElementById("honorbox").innerHTML + liArr[0];
+                            if (liArr[0] == "") {
+                                alert("没有数据了");
+                                document.getElementById("amore").style.display = "none";
+                            }
+
+                            if (liArr[1] == "false") {
+                                document.getElementById("amore").style.display = "none";
+                                return;
+                            }
+                            $('.honormore').removeClass('cur').html('点击加载');
+                        }
+                    });
+
+                }, 1500);
+                // 静态数据，接入后台删除---------------
+
+                // ajax加载返回数据需要写入以下代码
+                // $('.honormore').removeClass('cur').html('点击加载');
+                // $('#honorbox').append('填入后台返回数据的键名，去除单引号')
+
+
+
+
+            } else {
+                alert('正在加载，请勿重复加载')
+            }
+        }
+        // console.log($);
+        // console.log(this);
+
+        // var cc = function() {
+        //     console.log("ccc");
+        // }
+
+        // var d = "1231232131";
+        // $(document).ready(function() {
+        //     $("button").click(function() {
+        //         $("<b> Hello World!</b>").appendTo("p");
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $("button").toggle(function() {
+        //             $("body").css("background-color", "green");
+        //         },
+        //         function() {
+        //             $("body").css("background-color", "red");
+        //         },
+        //         function() {
+        //             $("body").css("background-color", "yellow");
+        //         }
+        //     );
+        // });
+
+        // $("#c").click(function(evebt) {
+        //     $("div").replaceWith("1234");
+        //     console.log(evebt);
+        //     console.log(this);
+        //     console.log(event.pageX);
+        //     evebt.which();
+        //     evebt.isDefaultPrevented();
+        // })
+
+        // $("").resize(function() {});
+
+        // function cc(c) {
+        //     console.log(this);
+        //     console.log(c);
+        // }
+
+        // document.getElementById("c").addEventListener("click", function() {
+        //     console.log(this);
+        // })
+
+        // $("").dblclick(function() {})
+
+        // $("").delegate(function() {})
+
+        // $("c").find("option:selected").text();
+        // $("c").val();
+        // $("c optinn[value='']")
+        // console.log(document.getElementById("s1").value);
+        // console.log(document.getElementById("s1").value)
+
+        // console.log($("#s1").find("option:selected").text());
+
+        // console.log($("#s1").val());
+
+        // $("#s1 option[value='2']").attr('selected', true);
+        // $("#s1").find(::)
+        // var c = $("");
+        // var a = c.val();
+
+        // var c = document.getElementById();
+
+        // c.options();
+        // c.selectedi
+
+        //window.onload = function() {
+
+        //首先获得下拉框的节点对象；
+        // var select = document.getElementById("s1");
+        // console.log(select);
+
+        // var c = document.getElementById("");
+        // c = c.selectedIndex;
+        // c = c.options;
+        // c[c].value;
+        // c
+
+        // //1.如何获得当前选中的值？：
+        // var value = select.value;
+        // console.log(value);
+
+        // //2.如何获得该下拉框所有的option的节点对象
+        // var options = select.options;
+        // //注意：得到的options是一个对象数组
+        // console.log(options);
+
+        // //3.如何获得第几个option的value值?比如我要获取第一option的value,可以这样：
+        // var value1 = options[0].value;
+        // //4.如何获得第几个option的文本内容?比如我要获取第一option的文本,可以这样：
+        // var text1 = options[0].text;
+
+        // //5.如何获得当前选中的option的索引？
+        // var index = select.selectedIndex;
+
+        // //6.如何获得当前选中的option的文本内容？
+        // //从第2个问题，我们已经获得所有的option的对象数组options了
+        // //又从第5个问题，我们获取到了当前选中的option的索引值
+        // //所以我们只要同options[index]下标的方法得到当前选中的option了
+        // var selectedText = options[index].text;
+
+        // }
+
+        // $(document).ready(function() {
+        //     $(".btn1").click(function() {
+        //         $("p").hide();
+        //     });
+        //     $(".btn2").click(function() {
+        //         $("p").show();
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     // $("button").click(cc)
+        // });
+
+        // function cc() {
+        //     alert("1");
+        // }
+        // $("c").append().prepend().after().before();
+        // $("").remove().removeClass().empty().css().addClass().toggleClass();
+        // $("").parent().parents().children().find();
+        // $("").first().last().filter().not().eq();
+
+        // $(function() {});
+        // $(document).ready(function() {});
+
+        // var c = $.noConflict();
+        // c("").ready(function() {});
+        // c("").remove().height;
+        // jQuery(document).ready(function() {})
+
+        // $("").hide().show().fadeIn().fadeOut().slideDown().slideUp().animate();
+
+        // $("").parentsUntil().parent().parents();
+        // $("").children().find();
+        // $("").siblings().next().nextAll().nextUntil().prev().prevAll().prevUntil();
+
+        // $(document).ready(function() {
+        //     $("span").parents().each(function() {
+        //         $(this).css({
+        //             "color": "red",
+        //             "border": "2px solid red"
+        //         })
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $("span").parent().css({
+        //         "color": "red",
+        //         "border": "2px solid red"
+        //     });
+        // });
+        // $("").append().prepend().after().before();
+        // var c = document.getElementsByTagName()[0];
+        // c = $(c);
+
+        // $(document).ready(function() {
+        //     console.log($(document));
+        //     $("button").click(function() {
+        //         var txt = "";
+        //         txt += "Document width/height: " + $(document).width();
+        //         txt += "x" + $(document).height() + "\n";
+        //         txt += "Window width/height: " + $(window).width();
+        //         txt += "x" + $(window).height();
+        //         alert(txt);
+        //     });
+        // });
+
+
+        // $("ccc").addClass().width().height(100).css().
+
+        // $(document).ready(function() {
+        //     $("button").click(function() {
+        //         $("#div1").empty();
+        //     });
+        // });
+
+        // $.ajax({
+        //     success
+        // })
+        // $("").css('display','none');
+
+        // $(document).ready(function() {
+        //     $("#btn1").click(function() {
+        //         $("p").before(" <b>Appended text</b>.");
+        //     });
+
+        //     $("#btn2").click(function() {
+        //         $("ol").after("<li>Appended item</li>");
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $("button").click(function() {
+        //         $("#w3s").attr({
+        //             "href": "http://www.w3school.com.cn/jquery/",
+        //             "title": "W3School jQuery 教程"
+        //         }, function(i, ii) {
+        //             alert('1');
+        //         });
+        //     });
+        // });
+        // console.log($("#cc").text());
+        // console.log($("#cc").html());
+        // // document.getElementById().attributes;
+        // // document.getElementById().
+        // $("").prop
+        //$("ddd").css().slideUp().slideDown();
+
+        // $(document).ready(function() {
+        //     $("#flip").click(function() {
+        //         $("#panel").slideDown(5000);
+        //     })
+
+        //     $("#stop").click(function() {
+        //         $("#panel").stop();
+        //     })
+        // })
+
+        // $("#d").click(function() {
+        //     $("div").animate({
+        //         height: "toggle"
+        //     })
+        // })
+
+        //$("cc").toggle();
+
+        // $(document).ready(function() {
+        //     $(".flip").click(function() {
+        //         $(".panel").slideDown("slow");
+        //     });
+        // });
+
+        // $(document).ready(function() {
+        //     $("p").hide();
+        //     $("button").click(cc);
+        // })
+
+        // function cc() {
+        //     $("p").fadeTo('slow', 0.3, function() {});
+        //     $("p").fadeIn("slow", function() {});
+        //     $("p").fadeOut("slow", function() {});
+        //     $("p").fadeToggle("slow", function() {});
+        // }
+
+        // $.noConflict();
+        // $(document).ready(function() {
+        //     $("button").click(function() {
+        //         $("p").text("jQuery 仍在运行！");
+        //     });
+        // });
+        // $("p").each(cc);
+
+        // function cc(cc, idnex) {
+        //     console.log(cc);
+        //     console.log(idnex);
+        // }
+
+        // document.getElementById("").style.display = "";
+        // $("").hide();
+        // $("").show();
+        // $(document).ready(function() {
+        //     $("#c").dblclick(cc);
+        // })
+
+        // function cc() {
+        //     console.log('c');
+        // }
+        // console.log(document.getElementsByTagName("p"));
+        // console.log($("p"));
+
+        //window.onload=function(){}
+        //$(document);
+        // console.log($(document));
+        // console.log(window);
+        // console.log(document);
+
+        // window.prompt("", "");
+
+        // window.confirm("");
+
+        // window.alert();
+        // $(document).ready(function() {
+        //     $("p").click(function() {
+        //         $(this).hide();
+        //     });
+        // })
+
+        // window.onload;
+
+        // $(document).ready(function() {});
+        // var json = {
+        //     "dasd": "sda",
+        //     cc: function() {
+        //         console.log(this);
+        //     }
+        // };
+
+        // var c = json.cc;
+        // c.call(json);
+    </script>
+</body>
+
+</html>

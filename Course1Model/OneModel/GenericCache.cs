@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,10 +42,10 @@ namespace Course1Model.OneModel
 
     /// <summary>
     /// 泛型缓存
+    ///  会产生 T 类型的副本
     /// </summary>
     public class GenericCache<T>
     {
-        /// <summary>
         /// 静态构造函数
         /// </summary>
         static GenericCache() 
@@ -60,7 +61,23 @@ namespace Course1Model.OneModel
         /// <returns></returns>
         private static string GetCache() 
         {
+
+            var i = 1; //编译器提供的便捷功能，称为语法糖
+
             return _TypeTime;
         }
+    }
+
+    /// <summary>
+    /// 泛型测试
+    /// </summary>
+    public class TestStatic
+    {
+        static TestStatic() 
+        {
+            a = "123";
+        }
+
+        private static string a;
     }
 }

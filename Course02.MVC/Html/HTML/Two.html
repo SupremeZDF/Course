@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+    <script src="../JS/layui/layui.js"></script>
+    <script src="../CSS/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="../JS/layui/css/layui.css" rel="stylesheet" />
+    <link href="..//CSS/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">@</span>
+        <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+    </div>
+
+    <!-- <div style="width: 200px;height: 200px;" id="a">123</div> -->
+
+    <div class="btn-group" role="group" aria-label="...">
+        <button type="button" onclick="A()" class="btn btn-default">Left</button>
+        <button type="button" class="btn btn-default">Middle</button>
+        <button type="button" class="btn btn-default">Right</button>
+    </div>
+    <script>
+        // debugger()
+        var c;
+        console.log(c);
+
+        console.log(a);
+
+
+
+        // var a = {
+        //     user: "追梦子",
+        //     fn: function() {
+        //         console.log(this.user);
+        //     }
+        // }
+        // var b = a.fn;
+        // var c = b.bind(a);
+        //console.log(c());
+        // {
+        //     let c = 12;
+        // }
+
+        // console.log(c);
+
+        // function name(params) {
+        //     console.log(z);
+
+        // }
+
+        // name("123");
+
+        // var z = 123;
+
+        // var a = {
+        //     user: "追梦子",
+        //     fn: function(e, ee) {
+        //         console.log(this.user); //追梦子
+        //         console.log(e + ee); //3
+        //     }
+        // }
+        // var b = a.fn;
+        // b();
+
+        // function name() {
+        //     this.cc = 12;
+        //     return undefined;
+        // }
+
+        // var c = new name;
+
+        // console.log(c.cc);
+
+        // function Fn() {
+        //     this.user = "追梦子";
+        // }
+        // var a = new Fn();
+        // console.log(a); //追梦子
+
+        // this.user = 12;
+        // console.log(this);
+
+        // var o = {
+        //     a: 10,
+        //     b: {
+        //         a: 12,
+        //         fn: function() {
+        //             console.log(this.a); //undefined
+        //             console.log(this); //window
+        //         }
+        //     }
+        // }
+        // var j = o.b.fn;
+        // j();
+
+        // var o = {
+        //     user: "追梦子",
+        //     fn: function() {
+        //         console.log(this); //追梦子
+        //     }
+        // }
+        // o.fn();
+
+        // function name() {
+        //     "use strict"
+        //     var x = this;
+        //     console.log(x);
+        // }
+
+        // name();
+
+        //   function c()
+        //   {
+
+        //   }
+
+        // window.c();
+
+        // // "use strict";
+
+        // // x = 3.4;
+
+        // var c = encodeURI("https://baidu.com?da=大大是");
+
+        // d = "12313";
+
+        // function c() {
+        // }
+        // c();
+
+        // function e() {
+        //     console.log(d);
+        // }
+
+        // e();
+        // console.log(c);
+
+        // var d = decodeURI(c);
+
+        // console.log(d);
+
+        // var c = 1;
+
+        // var c = new Error();
+
+        // try {
+
+        // } catch (err) {
+        //     err.name;
+        // }
+
+        // var a = ["123", '123', 132, '12321', 312, 'dasd123'];
+
+        // a.forEach(A);
+
+        // var c = 6 & 3;
+        // console.log(c);
+
+        // var a = -10;
+        // console.log(parseInt(a, 2).toString(10));
+
+        // var c="ccc";
+        // var patt1=/[h]/g;
+
+        // c.match(patt1);
+
+        // var c="111";
+        // c.m
+
+        // try {
+
+        // } catch {
+
+        // } finally {
+
+
+        // }
+
+        // function A(a) {
+        //     console.log(a);
+        // }
+        // console.log(A(3, 10));
+
+        // Math.ceil();
+
+        // if (!3 == 3) {
+        //     var c = 3 > 2 ? 2 : 2;
+        // }
+
+        // switch ("") {
+        //     case "":
+        //         ;
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        // for (x in xs) {
+
+        // }
+
+        // for (;;) {
+        //     break;
+        //     continue;
+        // }
+
+        // var c = ["Banana", "Orange", "Apple", "Mango"];
+
+        // console.log(c.constructor.toString());
+
+        // var d = {
+        //     "c": "c"
+        // };
+
+        // console.log(d.constructor.toString());
+
+
+        // function A(min, max) {
+        //     return Math.floor(Math.random() * (max + 1 - min)) + min;
+        // }
+
+        // var c=Number('12');
+
+
+        //var dat=new Date().getMilliseconds;
+
+        // var a = "123";
+
+        // var b = ['123', '123', '123', '123'];
+
+        // var json = ['123', '232', '32312', '323', '32131'];
+
+        // var ai = [10, 5, 20, 1, 32, 40, 4, 12];
+
+        // var c = ai.reduceRight(A);
+
+        // console.log(c);
+
+        // function A(total, value) {
+        //     console.log(total);
+        //     return total + value;
+        // }
+
+        // var a = new Date(milliseconds);
+
+        // var c = new Date().toUTCString();
+
+        // ai.forEach(A);
+
+        // function A(value, index, array) {
+        //     console.log(value);
+        //     console.log(index);
+        //     console.log(array);
+        // }
+
+        // var c = ai.filter(A);
+
+        // console.log(c);
+
+        // function A(value, index, array) {
+        //     return value > 20;
+        // }
+
+        // console.log(ai.length - 1);
+
+        // for (var i = 0; i < ai.length - 1; i++) {
+        //     for (var j = 0; j < ai.length - 1 - i; j++) {
+        //         if (ai[j] > ai[j + 1]) {
+        //             var iq = ai[j];
+        //             ai[j] = ai[j + 1];
+        //             ai[j + 1] = iq;
+        //         }
+        //     }
+        // }
+
+        // console.log(ai);
+
+        // json.sort();
+        // json.sort();
+        // // json.reverse();
+
+        // var a = [20, 5, 1, 10, 100];
+        // console.log(a.sort());
+
+        // a.sort(function(a, b) {
+        //     return a - b
+        // });
+        // console.log(a);
+
+        // var j = 1.22;
+
+        // //console.log(Number.MAX_VALUE);
+
+        // Math.max.apply(a);
+
+        // document.write(5 + 6);
+
+        // var a = "123\v12313123\r\n1231312\tdasdada\bdasdadas";
+        // document.write("sdadasdasda\
+        // dadasdasda");
+
+        // var c = a.search("");
+
+        // var c = a.toUpperCase(); //转化为 大写
+        // c = a.concat(' ', 'qeqwe');
+        // c = a.toLowerCase(); //转化为小写
+
+        // c = a.concat();
+
+        // String.prototype
+
+        // Number();
+
+        // String.prototype.trim = function() {
+        //     console.log("1232321");
+        // }
+
+        // var u = 12;
+
+        // var cars = [
+        //     "Audi",
+        //     "BMW",
+        //     "porsche"
+        // ];
+
+        // console.log(cars);
+
+        // window.onload = function() {
+        //         document.getElementById("a").innerHTML = cars;
+        //     }
+        // var c = Number.MAX_VALUE;
+        // var d = Number.MIN_VALUE;
+
+        // String.prototype.trim = function() {
+        //     console.log("12321321");
+        // }
+
+        // String.prototype.trim();
+
+
+        // u.toExponential();
+        // u.toFixed();
+
+        // var str = "4ewqeqw";
+        // console.log(str.trim());
+
+        // document.getElementById("a").onmouseover = function(a) {
+        //     console.log(this);
+        //     document.getElementById("a").style.backgroundColor = "red";
+        // }
+
+        // var a = "12313";
+        // var v = a.length();
+        // v = a.search();
+        // v = a.indexOf();
+
+        // document.getElementById("a").onmouseout = function(a) {
+        //     console.log(this);
+        //     document.getElementById("a").style.backgroundColor = "";
+        // }
+
+        // var a = "123\1231";
+        // console.log(a);
+        // a = "123\\1231";
+        // console.log(a);
+
+        // window.onkeydown = function(e) {
+        //     console.log(this);
+        //     console.log(e);
+        // }
+
+        //    function A() {
+        //         document.write("123");
+        //         switch ("") {
+        //             case "":
+        //                 var i = 1;
+        //                 break;
+        //             case "":
+        //                 var i = 2;
+        //                 break;
+        //         }
+
+        //         do {
+
+        //         }
+        //         while (1 > 2)
+        //     }
+
+        // var a = 1,
+        //     b = 2,
+        //     c = 3;
+
+
+        // var a = "1232312";
+        // var a;
+        // alert(a);
+
+        // var a = 3;
+        // var b = 2;
+        // var c = 3;
+        // a /= b;
+        // alert(a)
+        // c %= b;
+        // alert(c);
+
+        //var a = 3 < 2 ? 1 : 2;
+
+        //var a = 2 ** 3;
+
+        // var a = 1 % 2;
+
+        // alert(a);
+
+
+        // var a = Math.pow(5, 2);
+        // alert(a);
+
+
+        // var a = 1e4;
+        // alert(a);
+
+        // console.log(typeof c);
+
+        // var a = 123;
+        // alert(typeof a)
+
+        // var c;
+        // console.log(typeof c);
+
+        // function A() {
+
+        //     return 12;
+        // }
+
+        // console.log(A());
+
+        // var person = {
+        //     firstName: "Bill",
+        //     lastName: "Gates",
+        //     id: 678,
+        //     fullName: function() {
+        //         return console.log(this);
+        //     }
+        // };
+
+        // person.fullName();
+
+        // function A() {
+        //     console.log(this);
+        // }
+        // A();c
+
+        // var s = new String("123");
+        // //s = "123";
+        // console.log(s.valueOf());
+
+        // console.log(typeof s)
+
+        // window.onload = function() {
+
+        //     console.log("1");
+        // }
+    </script>
+</body>
+
+</html>

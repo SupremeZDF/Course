@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.15&key=c78636f50113c0ca81d60713b019ac1a"></script>
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+    <script src="../JS/layui/layui.js"></script>
+    <script src="../CSS/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="../JS/layui/css/layui.css" rel="stylesheet" />
+    <link href="../CSS/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="HTML/File.css" />
+    <script src="../JS/qrcode.js"></script>
+    <title>Document</title>
+    <style>
+        .c {
+            position: absolute;
+            background-image: url("");
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <a href="" style="background-image: url('/vancheerfile/images/<%=banner.Rows[0][ " img "].ToString() %></a>')"> -->
+
+    <input id="user" type="text" />用户
+    <input id="conn" type="button" class="btn btn-primary" value="连接" />
+    <input id="close" type="button" class="btn btn-primary" value="关闭" /><br />
+    <span id="tips"></span>
+    <input id="send" type="button" class="btn btn-primary" value="发送" /><br />
+    <input id="senduserID" type="text" />目的用户
+    <input id="sendContnt" type="text" />发送内容
+    <div id="msg">
+    </div>
+    <!-- <button type="button" class="btn btn-primary">（首选项）Primary</button> -->
+    <script>
+        //var c = document.getElementById("cc").firstChild.childNodes[0].nodeValue;
+
+        // function AA() {
+        //     // console.log(navigator.appName);
+        //     // console.log(navigator.appCodeName);
+        //     // console.log(navigator.platform);
+        //     // window.open("https://www.baidu.com");
+        //     console.log(1);
+        // }
+
+        // document.documentElement.clientWidth;
+        // window.onresize = AA;
+        // var cc = setInterval(AA, 2000);
+
+        var ws;
+
+        // var json = {
+        //     "a": 12,
+        //     "b": "123",
+        //     "c": {
+        //         "dd": 12,
+        //         "ff": "123"
+        //     }
+        // }
+        var ddtime = new Date().getTime();
+        $(function() {
+            $("#conn").click(function() {
+                var dd = "wss://localhost:44397/api/QrCodeApi/WebSocket?userID=" + $("#user").val();
+                ws = new WebSocket(dd);
+                //$("#msg").append('<p>正在连接</p>');
+                //ws.readyState = WebSocket.open
+                ws.onopen = function() {
+
+                    $("#msg").append('<p>已经链接</p>');
+                    console.log(ws.readyState);
+                }
+                ws.onmessage = function(evt) {
+                    alert("1");
+                    $("#msg").append('<p>' + evt.data + '</p>');
+                }
+                ws.onerror = function(evt) {
+                    $('#msg').append('<p>' + JSON.stringify(evt) + '</p>');
+                }
+                ws.onclose = function() {
+                        $('#msg').append('<p>已经关闭</p>');
+                    }
+                    // ws.onopen();
+                console.log(ws.readyState);
+            })
+
+            $("#close").click(function() {
+                ws.close();
+            })
+
+            //发送请求
+            $("#send").click(function() {
+                console.log(ws.readyState);
+                if (ws.readyState == WebSocket.OPEN) {
+                    ws.send($("#senduserID").val() + "|" + $("#sendContnt").val());
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+    <script src="../JS/layui/layui.js"></script>
+    <script src="../CSS/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="../JS/layui/css/layui.css" rel="stylesheet" />
+    <link href="..//CSS/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+    <title>Document</title>
+    <style>
+        /* .c {} */
+    </style>
+</head>
+
+<body>
+
+    <!-- <div id="A">
+        <div>dasdasd</div>
+        <div>asdasda</div>
+        <p>sss</p>
+        <p>sdasd</p>
+    </div>
+    <button onclick="A()">dadadada</button> -->
+    <!-- <form name="A" onsubmit="return D()" action="#" method="get">
+        <div class=" form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="text " name="B" id="B" max="10" min="2" validity class="form-control" required placeholder="Email ">
+    </form> -->
+
+    <!-- <p>Hello World!</p>
+
+    <p class="intro">DOM 很有用。</p>
+
+    <p class="intro">本例演示 <b>querySelectorAll</b> 方法。</p>
+
+    <p id="demo"></p> -->
+
+    <!-- <form id="a" action="/demo/action_page.php" onsubmit="return false">
+        First name: <input type="text" name="fname" value="Bill"><br> Last name: <input type="text" name="lname" value="Gates"><br><br>
+        <input type="submit" value="提交">
+    </form>
+
+    <button onclick="myFunction()">试一试</button> -->
+    <!-- 
+    <div>dadasd</div>
+
+    <div id="b">sdasdas</div>
+
+    <button onclick="A()">dsad</button> -->
+
+    <h1>JavaScript HTML DOM</h1>
+
+    <p id="c">Hellow World!
+        <p id="c">Hellow World!</p>
+    </p>
+
+    <p>Hello China!</p>
+
+    <p id="demo"></p>
+
+    <div>
+        <div>
+
+        </div>
+    </div>
+    <script>
+        var myNodelist = document.querySelectorAll("p");
+        console.log(myNodelist[0]);
+
+        var myCollection = document.getElementsByTagName("p");
+        console.log(myCollection[0]);
+        // document.getElementById("demo").innerHTML =
+        //     "此文档包含 " + myCollection.length + " 段文字。";
+        // document.getElementById("demo").innerHTML =
+        //     "此文档包含 " + myNodelist.length + " 段文字。";
+        // document.getElementById("").attrbute
+
+        // function A() {
+        //     document.getElementById("b").write("asdad");
+
+        // document.getElementById("").replaceChild("", "");
+
+        // document.getElementsByTagName();
+
+        // }
+        // function myFunction() {
+        //     var x = document.forms["a"];
+        //     console.log(x);
+        //     var text = "";
+        //     var i;
+        //     console.log(x.elements);
+        //     for (i = 0; i < x.length; i++) {
+        //         text += x.elements[i].value + "<br>";
+        //     }
+        //     console.log(text);
+        //     // document.getElementById("demo").innerHTML = text;
+        // }
+        // window.document
+
+        // var c = document.querySelectorAll("p");
+        // console.log(c);
+
+        // var d = document.querySelector("p");
+        // console.log(d);
+
+        // function A() {
+        //     //document.getElementById("A").innerHTML = 12;
+        //     var c = document.getElementById("A");
+        //     console.log(c);
+        //     console.log(c.getElementsByTagName("div")[0]);
+        // }
+
+        // var cc = (function() {
+        //     var c = 0;
+        //     return function() {
+        //         c + 1;
+        //     }
+        // })();
+
+        // console.log(cc.toString());
+
+        // var aa = function() {
+        //     c = 6;
+        //     cc();
+        //     console.log(c);
+        // }
+
+        // var add = (function() {
+        //     var counter = 0;
+        //     return function() {
+        //         counter += 1;
+        //         return counter;
+        //     }
+        // })();
+        // console.log(add.toString());
+
+        // var person = {
+        //     fullName: function(city, country) {
+        //         console.log(this.firstName + " " + this.lastName + "," + city + "," + country);
+        //     }
+        // }
+        // var person1 = {
+        //     firstName: "John",
+        //     lastName: "Doe"
+        // }
+        // person.fullName.apply(person1, ["Oslo", "Norway"]);
+
+        // var person = {
+        //     fullName: function(city, country) {
+        //         console.log(this);
+        //     }
+        // }
+        // var person1 = {
+        //     firstName: "Bill",
+        //     lastName: "Gates"
+        // }
+
+        // person.fullName.call(person1, 'eqweqw', 'qweqweqw');
+
+        // var c = person.fullName;
+        // c();
+        // person.fullName();
+
+        // function cc() {
+        //     (function() {
+        //         console.log(1)
+        //     })();
+        // }
+        // cc();
+
+        // var z = 100 / Number.MAX_VALUE;
+        // console.log(z);
+
+        // function CC() {
+        //     var dd = [1, 2, 3, 4, 5];
+        //     // arguments.forEach(function(values, index, array) {
+        //     //     console.log(values);
+        //     //     console.log(index);
+        //     // });
+
+        //     for (var i = 0; i < arguments.length; i++) {
+        //         console.log(arguments[i]);
+        //     }
+        // }
+
+        // CC(1, 2, 3, 4, 5, 6);
+
+        // (function() {
+        //     console.log("123456");
+        // })()
+
+        // var cc = (x, y) => {
+        //     var c = 2;
+        //     var cc = 2;
+        //     return x * y;
+        // };
+
+        // console.log(cc(2, 4));
+
+        //Object.prototype
+
+        // var c = {
+        //     a: "c",
+        //     b: "d",
+        //     h: "w",
+        //     set lang(t) {
+        //         this.a = t;
+        //     }
+        // };
+
+        // c.lang = "wqeqweqweqwe";
+        // console.log(c);
+
+        // var person = {
+        //     firstName: "Bill",
+        //     lastName: "Gates",
+        //     language: "en",
+        //     get cc() {
+        //         return this.firstName;
+        //     }
+        // };
+
+        // console.log(person.cc);
+
+        // var person = {
+        //     firstName: "Bill",
+        //     lastName: "Gates",
+        //     id: 678,
+        // };
+
+        // person.name = function() {
+        //     console.log("adas" + this.firstName);
+        // }
+
+        // person.name();
+
+        // function D() {
+        //     var data = document.getElementById("B").ran;
+        //     console.log(1);
+        //     if (!data.checkValidity) {
+        //         console.log(data.validationMessage);
+        //     }
+        //     return false;
+        // }
+
+        // function C() {
+        //     var x = document.forms["A"]["B"].value;
+        //     console.log(x);
+        //     alert(10);
+        //     return false;
+        // }
+    </script>
+
+</body>
+
+</html>

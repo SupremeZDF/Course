@@ -13,7 +13,7 @@ namespace Course1Model
         /// 显示值 
         /// </summary>
         /// <param name="value"></param>
-        public static void ShowObject(object value) 
+        public static void ShowObject(object value)
         {
             //var a = typeof(OneClass);
             //var b = value.GetType().Name;
@@ -21,15 +21,17 @@ namespace Course1Model
             //var c = value;
         }
 
+        //public OneClass() { }
+
         /// <summary>
         /// 装箱 拆箱
         /// Object 在堆里面
         /// 值类型在 堆里面
         /// 把int 值 传入Object里面 会把值从栈Copy到堆里面
         /// </summary>
-        public static void ZCObject() 
+        public static void ZCObject()
         {
-        
+
         }
 
         /// <summary>
@@ -51,7 +53,7 @@ namespace Course1Model
         /// <summary>
         /// 性能测试
         /// </summary>
-        public static void Show() 
+        public static void Show()
         {
             int isValue = 12345;
             long comonSecond = 0;
@@ -60,9 +62,9 @@ namespace Course1Model
             {
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
-                for (var i = 0; i < 100_000_000; i++) 
+                for (var i = 0; i < 100_000_000; i++)
                 {
-                    ShowIbnt(isValue);
+                    //ShowIbnt(isValue);
                 }
                 stopwatch.Stop();
                 comonSecond = stopwatch.ElapsedMilliseconds;  //536
@@ -89,9 +91,9 @@ namespace Course1Model
             }
         }
 
-        public static void ShowIbnt(int isParameter) 
+        public static void ShowIbnt(int isParameter, object name)
         {
-        
+            int c = (int)name;
         }
 
         /// <summary>
@@ -101,12 +103,46 @@ namespace Course1Model
         /// <param name="iParameter"></param>
         public static void Show<T>(T iParameter)
         {
-        
+            Newtonsoft.Json.JsonConvert.SerializeObject("");
         }
 
         //public static void ShowObjects(object oParameter) 
         //{
-        
+
         //}
     }
+
+    public class A<T> { }
+
+    public interface C<S>
+    {
+        //public int CC{ get; set; }
+        //int cc { get; set; }
+        //int ccc;
+    }
+
+    public class B : A<String>, C<int>
+    {
+        //public int cc { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        public void cc() 
+        {
+            DD<OneClass> D = new DD<OneClass>();
+        }
+    }
+
+    public class dd { }
+
+
+    public class DD<T> where T:class ,new()
+    {
+      
+    }
+
+    public struct Name 
+    {
+    
+    }
+
+    
 }

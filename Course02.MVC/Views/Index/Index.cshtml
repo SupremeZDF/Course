@@ -1,0 +1,95 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="D:/学习/架构版班_学习课/Course1Course02.MVC\Html\JS\jquery-3.3.1.js"></script>
+    <script src="D:/学习/架构版班_学习课程\Course1\Course02.MVC\Html\JS\select2.min.js"></script>
+    <link href="D:/学习/架构版班_学习课程\Course1\Course02.MVC\Html\CSS\select2.min.css" rel="stylesheet" />
+    <title>Index</title>
+</head>
+<body>
+    <div style="width:200px;">
+        <section class="multipleS1" id="ModelDZ">
+            <option>请选择</option>
+        </section>
+    </div>
+    <script>
+        $(".multipleS1").each(function () {
+            //alert("1");
+            var $this = $(this);
+            $this.select2({
+                inputMessage: $this.attr("inputMessage"),
+                ajax: {
+                    url: "https://localhost:5001/api/Select/GetSelect",
+                    dataType: 'json',
+                    delay: 250, // 延迟显示s
+                    type: "post",
+                    contentType: "application/x-www-form-urlencoded",
+                    data: function (params) {
+                        //console.log(params);
+                        var data = {
+                            TJ: params.term, //搜索条件
+                            page: params.page || 1, // 第几页
+                            rows: 30, // count
+                            action: "BindDYModelSelect",
+                            XZFID: "2"
+                            // FmodelID: $this.attr("FmodelID"),
+                            // FID: $this.attr("FID")
+                        };
+                        //params.page = 1;
+                        console.log(JSON.stringify(data));
+                        //console.log(params);
+                        return data;
+                    },
+                    // 分页
+                    processResults: function (data, params) {
+                        console.log(params);
+                        params.page = params.page || 1;
+                        return {
+                            results: data.results,
+                            pagination: {
+                                more: params.page < data.total_Count
+                            }
+                        };
+                    },
+                    cache: false
+                },
+                escapeMarkup: function (markup) {
+                    return markup; //默认情况下，认为templateResult方法返回是纯字符串，会经过escapeMarkup方法去除html标记
+                },
+                minimumInputLength: 1, // 最少输入一个字符才开始检索
+                placeholder: "",
+                templateResult: formatState, //// 显示的结果集格式，这里需要自己写css样式， 获取结果集 然后对结果进行初始化
+                templateSelection: function (repo) {
+                    console.log(repo);
+                    return repo.realname || repo.text; // 列表中选择某一项后显示到文本框的内容 初始化/后续
+                }
+            });
+        })
+
+        function formatState(state) {
+            console.log(state);
+            if (!state.id) {
+                return state.text;
+            }
+            var baseUrl = "/user/pages/images/flags";
+            var $state = $(
+                '<span><img src="' + baseUrl + '/' + state.element.value.toLowerCase() + '.png" class="img-flag" /> ' + state.text + '</span>' //// 显示的结果集格式，这里需要自己写css样式，可参照demo
+            );
+            return $state;
+        };
+
+            // $(".js-example-templating").select2({
+            //     templateResult: formatState
+            // });
+
+            //$.map();
+    </script>
+</body>
+</html>

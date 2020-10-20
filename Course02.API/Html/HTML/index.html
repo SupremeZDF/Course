@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+    <script src="../JS/layui/layui.js"></script>
+    <link href="../JS/layui/css/layui.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo">layui 后台布局</div>
+            <!-- 头部区域（可配合layui已有的水平导航） -->
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item"><a href="#" lay-id="one" onclick="TableChange(this)">控制台</a></li>
+                <li class="layui-nav-item"><a href="#" lay-id="two" onclick="TableChange(this)">商品管理</a></li>
+                <li class="layui-nav-item"><a href="#" lay-id="three" onclick="TableChange(this)">用户</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">其它系统</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">邮件管理</a></dd>
+                        <dd><a href="">消息管理</a></dd>
+                        <dd><a href="">授权管理</a></dd>
+                    </dl>
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="">安全设置</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="">退了</a></li>
+            </ul>
+        </div>
+
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">所有商品</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" onclick="log()">列表一</a></dd>
+                            <dd><a href="javascript:;">列表二</a></dd>
+                            <dd><a href="javascript:;">列表三</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">解决方案</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;">列表一</a></dd>
+                            <dd><a href="javascript:;">列表二</a></dd>
+                            <dd><a href="">超链接</a></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item"><a href="">云市场</a></li>
+                    <li class="layui-nav-item"><a href="">发布商品</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-tab" lay-allowClose="true" lay-filter="demo">
+                <ul class="layui-tab-title">
+
+                </ul>
+                <div class="layui-tab-content">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var element
+            //JavaScript代码区域
+        layui.use('element', function() {
+            element = layui.element;
+
+        });
+
+        function TableChange(obj) {
+            console.log(obj);
+            var i = $(obj).attr("lay-id");
+            console.log(i);
+            var text = $(obj).text();
+            console.log(text);
+            var exist = $("li[lay-id='" + i + "']").length;
+            console.log(exist);
+            if (exist == 0) {
+                alert("1");
+                element.tabAdd('demo', {
+                    title: text,
+                    content: '选项卡的内容' //支持传入html
+                        ,
+                    id: i
+                });
+            }
+            element.tabChange('demo', i);
+            element.init('tab', 'demo')
+        }
+
+        function log() {
+            //window.location.href = "https://www.baidu.com/";
+            var hash = (!window.location.hash) ? "https://www.baidu.com/" : window.location.hash;
+            window.location.hash = hash;
+            console.log(window.location.hash);
+        }
+
+        function OneTest() {
+            document.querySelector("").innerHTML = "";
+        }
+    </script>
+</body>
+
+</html>

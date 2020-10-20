@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            background: yellow;
+        }
+        
+        #animate {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            background: red;
+        }
+    </style> -->
+    <script src="../JS/jquery-3.3.1.min.js"></script>
+    <script src="../JS/layui/layui.js"></script>
+    <script src="../CSS/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <link href="../JS/layui/css/layui.css" rel="stylesheet" />
+    <link href="..//CSS/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet" />
+
+    <style>
+        /* #myDiv1,
+        #myDiv2 {
+            background-color: coral;
+            padding: 50px;
+        }
+        
+        #myP1,
+        #myP2 {
+            background-color: white;
+            font-size: 20px;
+            border: 1px solid;
+            padding: 20px;
+        } */
+        
+        #c {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <h1>我的第一个 JavaScript 动画</h1>
+    <div id="container">
+        <div id="animate"></div>
+    </div> -->
+
+    ​
+    <!-- <h1>JavaScript addEventListener()</h1>
+    ​
+    <div id="myDiv1">
+        <h2>Bubbling:</h2>
+        <p id="myP1">锟斤拷锟斤拷锟揭ｏ拷</p>
+    </div><br> ​
+    <div id="myDiv2">
+        <h2>Capturing:</h2>
+        <p id="myP2">锟斤拷锟斤拷锟揭ｏ拷</p>
+    </div> -->
+    ​
+    <!-- <div id="div1">
+        <p id="p1">这是一段文字。</p>
+        <p id="p2">这是另一段文字。</p>
+    </div> -->
+
+    <!-- <div id="c">
+        <button type="button" id="cc" class="btn btn-default">Right</button>
+    </div> -->
+    <!-- 
+    <h1>XMLHttpRequest 对象</h1>
+
+    <h2>请在下面的输入字段中键入字母 A-Z：</h2>
+
+    <p>搜索建议：<span id="txtHint"></span></p>
+
+    <p>姓名：<input type="text" id="txt1" onkeyup="showHint(this.value)"></p> -->
+
+    <script>
+        // alert
+
+        // window.onkeydown = function() {
+        //     console.log(1);
+        // }
+
+        // window.onkeyup = function() {
+        //     console.log(2);
+        // }
+
+        // function showHint(str) {
+        //     var xhttp;
+        //     if (str.length == 0) {
+        //         document.getElementById("txtHint").innerHTML = "";
+        //         return;
+        //     }
+        //     xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             document.getElementById("txtHint").innerHTML = this.responseText;
+        //         }
+        //     };
+        //     xhttp.open("GET", "/demo/gethint.asp?q=" + str, true);
+        //     xhttp.send();
+        // }
+
+        // var xhr = new XMLHttpRequest();
+        // if (window.XMLHttpRequest) {} else {
+        //     xhr = new ActiveXObject("Microsoft.XMLHTTP");
+        // }
+        // var c = new XMLHttpRequest();
+        // c.onreadystatechange = function() {};
+        // var c = 2;
+        // console.log(c.toString());
+        // 2. toString();
+
+        // var c = new XMLDocument();
+        // c.getElementsByTagName("")[1].getElementsByTagName("s")[1].childNodes[0].nodeValue;
+
+        // xhr.abort();
+        // xhr.getResponseHeader();
+        // xhr.statusText;
+
+        // //设置时间函数
+        // function setCookie(cname, cvalue, exdays) {
+        //     var d = new Date();
+        //     d.setTime(d.getTime + (exdays * 24 * 60 * 60 * 1000));
+        //     var expires = "expires=" + d.toUTCString();
+        //     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        // }
+
+        // function GetCookie(cname) {
+        //     var name = cname + "=";
+        //     var decodeCookie = decodeURIComponent(document.cookie);
+        //     console.log(decodeCookie);
+        //     var ca = decodeCookie.split(";");
+        //     for (var i = 0; i < ca.length; i++) {
+        //         var c = ca[i];
+        //         console.log(c.charAt(0));
+        //         while (c.charAt(0) == ' ') {
+        //             c = c.substring(1);
+        //         }
+        //         if (c.indexOf(name) == 0) {
+        //             return c.substring(name.length, c.length);
+        //         }
+        //     }
+        //     return "";
+        // }
+
+        // function checkCookie() {
+        //     var username = GetCookie("userName");
+        //     if (username != "") {
+        //         alert("welcome again" + username);
+        //     } else {
+        //         username = prompt("dasdasdasdasda", "");
+        //         if (username != null && username != "") {
+        //             setCookie("userName", username, 365);
+        //         }
+        //     }
+        // }
+
+
+        // function setCookie(cname, cvalue, exdays) {
+        //     var d = new Date();
+        //     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        //     var expires = "expires=" + d.toGMTString();
+        //     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        // }
+
+        // function getCookie(cname) {
+        //     var name = cname + "=";
+        //     var decodedCookie = decodeURIComponent(document.cookie);
+        //     var ca = decodedCookie.split(';');
+        //     for (var i = 0; i < ca.length; i++) {
+        //         var c = ca[i];
+        //         while (c.charAt(0) == ' ') {
+        //             c = c.substring(1);
+        //         }
+        //         if (c.indexOf(name) == 0) {
+        //             return c.substring(name.length, c.length);
+        //         }
+        //     }
+        //     return "";
+        // }
+
+        // function checkCookie() {
+        //     var user = getCookie("username");
+        //     if (user != "") {
+        //         alert("再次欢迎您，" + user);
+        //     } else {
+        //         user = prompt("请输入姓名：", "");
+        //         if (user != "" && user != null) {
+        //             setCookie("username", user, 30);
+        //         }
+        //     }
+        // }
+
+        // window.onload = checkCookie;
+
+        // document.cookie = "username=Bill Gates";
+        // console.log(document.cookie["username"]);
+
+
+        // document.cookie = "username=Steve Jobs; expires=Sun, 31 Dec 2017 12:00:00 UTC; path=/";
+        // var c = document.cookie;
+        // console.log(c);
+
+        // console.log(window.location.href);s
+        // console.log(window.location.hostname);
+        // console.log(window.location.protocol);
+        // console.log(window.location.href);
+        // console.log(window.location.href);
+
+        //confirm("dasdad");
+
+        // window.prompt("dad", "");
+        // alert("1");
+        // new Date().toLocaleTimeString();
+
+        //console.log(window.screen.width);
+        //window.open("https://www.baidu.com");
+
+        // var c=window.innerWidth;
+        // var d=document.body.clientWidth;
+        // var cc = function() {
+        //     console.log("1");
+        // }
+
+        // let a = 1;
+        // var b = 2;
+
+        // window.onresize = function() {
+        //     console.log(window.innerWidth);
+        //     console.log(window.innerHeight)
+        // }
+
+        // var para = document.createElement("p");
+        // var node = document.createTextNode("这是新的文本。");
+        // var nodes = document.createTextNode("这是新的文本。");
+        // para.appendChild(node);
+        // para.appendChild(nodes);
+        // var element = document.getElementById("div1");
+        // element.appendChild(para);
+        // document.bt =
+
+        // document.getElementById("myP1").addEventListener("click", function() {
+        //     alert("1");
+        // }, false);
+        // document.getElementById("").innerHTML;
+        //document.getElementById("sss").childNodes[0].nodeValue;
+
+        //document.getElementById("dasdas").removeEventListener("click",function()[}])
+
+        // document.getElementById("myDiv1").addEventListener("click", function() {
+        //     alert("2");
+        // }, false);
+
+        // document.getElementById("myP2").addEventListener("click", function() {
+        //     alert("3");
+        // }, true);
+
+        // document.getElementById("myDiv2").addEventListener("click", function() {
+        //     alert("4");
+        // }, true);
+        //document.doc
+        //document.createTextNode;
+        //document.head.
+        // var c = document.createAttribute("id");
+        // document.createElement("cc").
+        // document.getElementById("cc").addEventListener("click", function() {
+        //     alert("2");
+        // })
+
+        // document.getElementById("cc").addEventListener("click", function() {
+        //     alert("1");
+        // })
+
+
+        // window.onresize = function() {
+        //     alert("1");
+        // }
+
+        // window.onmouseover = function() {
+        //     alert("2");
+        // }
+
+        // document.getElementById("cc").addEventListener("mouseover", function() {
+        //     alert("1");
+        // })
+
+        // window.onload = function() {
+        //     alert("1");
+        //     "dsa".toLowerCase();
+        // }
+
+        // window.onunload = function() {
+        //     alert("2");
+        // }
+
+        // function CheckCookies() {
+        //     var text = "";
+        //     if (navigator.cookieEnabled == true) {
+
+        //     }
+        // }
+
+        // var elem = document.getElementById("animate");
+        // var pos = 0;
+        // var id = window.setInterval(name);
+
+        // function name() {
+        //     if (pos == 350) {
+        //         clearInterval(id);
+        //         return;
+        //     }
+        //     pos++;
+        //     elem.style.top = pos + "px";
+        //     elem.st
+
+        //     style.left = pos + "px";
+        // }
+
+        // function chanage(id) {
+        //     id.innerHTML = "";
+        // }
+    </script>
+</body>
+
+</html>
