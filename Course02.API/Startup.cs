@@ -59,10 +59,10 @@ namespace Course02.API
                options => options.AddPolicy(
                    "MY",
                    configurePolicy => configurePolicy
-                       .AllowAnyOrigin()
+                       .SetIsOriginAllowed(o=>true)
                        .AllowAnyHeader()
                        .AllowAnyMethod()
-                       //.AllowCredentials()
+                       .AllowCredentials()
                )
            );
         }
@@ -83,12 +83,11 @@ namespace Course02.API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json","eqeqweda");
             });
 
+            app.UseCors("MY");
+
             app.UseRouting();
 
             app.UseAuthorization();
-
-            //app.UseCors("MY");
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

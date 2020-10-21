@@ -67,7 +67,7 @@ namespace Course2.Model
     }
 
 
-    public interface ICustomer<out T>
+    public interface ICustomer<out T> //协变
     {
         T Name();
 
@@ -82,7 +82,7 @@ namespace Course2.Model
         }
     }
 
-    public interface ICustomerIn<in T>
+    public interface ICustomerIn<in T>  //逆变
     {
         void Name(T name);
 
