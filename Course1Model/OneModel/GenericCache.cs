@@ -35,6 +35,7 @@ namespace Course1Model.OneModel
                 _TypeTimeDictionary[type] = string.Format("{0}_{1}", typeof(T).FullName, DateTime.Now.ToString("yyyyMMddHHmmss,fff"));
             }
             Dictionary<string, string> pairs = new Dictionary<string, string>();
+            //pairs.Add();
             pairs["123"] = "123";
             return _TypeTimeDictionary[type];
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Web.Http;
 using Course1Model;
 using Course1Model.OneModel;
@@ -57,6 +58,13 @@ namespace Course1.Controllers
         public void ThreeMethod() 
         {
             //ThreeClass.Get<int>(1);
+        }
+
+        [HttpGet]
+        public void Asseblay() 
+        {
+            var c = AppDomain.CurrentDomain.BaseDirectory;
+            var cc = Assembly.Load("");
         }
     }
 }

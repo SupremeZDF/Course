@@ -55,6 +55,13 @@ namespace Course02.API
                 var path = System.IO.Path.Combine(basePath, "Course02.API.xml");
                 swag.IncludeXmlComments(path);
             });
+
+            //var  c= new ConfigurationBuilder()
+            //    .SetBasePath(Directory.GetCurrentDirectory())
+            //    .AddJsonFile("appsettings.json"); 
+
+            //IConfiguration configuration= new config();
+
             services.AddCors(
                options => options.AddPolicy(
                    "MY",

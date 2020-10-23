@@ -17,5 +17,23 @@ namespace Course02.MVC.Controllers
         {
             return Select2Test.GetSelectData(selectSSTJ.page, selectSSTJ.rows);
         }
+
+        [HttpGet]
+        public void A()
+        {
+        
+        }
+
+        [HttpGet]
+        public void A(int aa)
+        {
+
+        }
+
+        //[HttpPost]
+        //public void A(int aa)
+        //{
+
+        //}
     }
 }
