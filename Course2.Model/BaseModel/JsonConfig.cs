@@ -8,19 +8,27 @@ namespace Course2.Model.BaseModel
 {
     public class JsonConfig
     {
-        private static IConfigurationBuilder _Configuration;
+        private static IConfiguration _Configuration;
+
+        private JsonConfig() 
+        {
+        
+        }
 
         static JsonConfig()
         {
             //var cc=Microsoft.Extensions.Configuration.FileConfigurationExtensions()
 
-            _Configuration = new ConfigurationBuilder();
+            _Configuration = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("ConfigEF.json", optional: true, reloadOnChange: true)
+                .Build();
             //IConfiguration
         }
 
-        public  void name() 
+        public static  IConfiguration jsonConfigRead() 
         {
-
+            return _Configuration;
         }
     }
 }

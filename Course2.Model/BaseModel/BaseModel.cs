@@ -6,6 +6,6 @@ namespace Course2.Model.BaseModel
 {
     public class BaseModel
     {
-        public int id { get; set; }
+        public int isTable { get; set; }
     }
 }
