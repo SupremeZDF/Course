@@ -19,11 +19,13 @@ namespace Cource02.FactoryModel.Exercise.BaseserVice
     {
         public ExerciseResult Add(T t)
         {
+            ExerciseResult result = new ExerciseResult() { code = 1 };
             try
             {
-                ExerciseResult result = new ExerciseResult() { code = 1 };
                 if (t == null)
                 {
+                    result.code = 0;
+                    result.message = "";
                     return result;
                 }
                 var sql = SqlBuirder<T>.AddString;
@@ -47,21 +49,15 @@ namespace Cource02.FactoryModel.Exercise.BaseserVice
                     sqlCommand.CommandText = sql;
                     sqlCommand.Parameters.AddRange(sqlParameters.ToArray());
                     var excuteSql = sqlCommand.ExecuteScalar();
-                    //if (excuteSql.Read())
-                    //{
-                    //    var returnValue=
-                    //}
-                    //else 
-                    //{
-
-                    //}
                 }
             }
             catch (Exception x)
             {
+                result.code = 0;
+                result.message = x.Message ;
                 var ex = x.Message;
             }
-            return null;
+            return result;
         }
 
         public ExerciseResult Delete(T t)
@@ -97,21 +93,16 @@ namespace Cource02.FactoryModel.Exercise.BaseserVice
                         }
                         t_Users.Add(t_User);
                     }
-                    //if (read.Read())
-                    //{
-
-                    //}
-                    //else 
-                    //{
-                    
-                    //}
+                    exerciseResult.code = 1;
+                    exerciseResult.@object = t_Users;
                 }
             }
             catch (Exception ex)
             {
-                var x = ex.Message;
+                exerciseResult.code = 0;
+                exerciseResult.message = ex.Message;
             }
-            return null;
+            return exerciseResult;
             //  throw new NotImplementedException();
         }
 
