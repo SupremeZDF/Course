@@ -24,6 +24,15 @@ namespace Course2.Model.Modle
                 command.Transaction = c;
                 command.CommandType = CommandType.Text;
                 command.CommandText = sql;
+
+                var cc = command.ExecuteReader();
+
+                command.ExecuteScalar();
+
+                cc.Read();
+
+                var ccc = cc.Read();
+
                 //command.Parameters.Add();
                 DataTable dataTable = new DataTable();
                 SqlDataAdapter sqlDataAdapter = new SqlDataAdapter();

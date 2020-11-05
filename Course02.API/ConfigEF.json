@@ -1,3 +1,4 @@
 {
-  "Connection": "Data Source=.;Initial Catalog=ZhiHu;Integrated Security=True"
+  "Connection": "Data Source=.;Initial Catalog=ZhiHu;Integrated Security=True",
+  "Sqlconnection": ""
 }

@@ -38,6 +38,9 @@ namespace Course02.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //var dd = typeof(int) == typeof(Int64);
+
             services.AddControllers();
             services.AddRazorPages();
             services.AddMvc();

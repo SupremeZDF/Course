@@ -9,7 +9,7 @@ namespace Course2.Model.BaseModel
     {
         public EFExpriceAttribute() 
         {
-         
+            //nt
         }
 
         public bool isPrimary { get; set; }

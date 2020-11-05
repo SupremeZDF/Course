@@ -9,6 +9,7 @@ using Course2.Model.Couurse;
 using System.Reflection;
 using System.Data;
 using System.Net.Sockets;
+using System.Linq;
 
 namespace Course2.Model.IDBHELP
 {
@@ -26,52 +27,61 @@ namespace Course2.Model.IDBHELP
         //新增
         public static bool sqlDelete<T>(T t) where T : BaseModel.BaseModel
         {
-            if (t == null) { return false; }
-            var obj = t.GetType();
 
-            var fileName = "";
-            List<string> strArry = new List<string>();
-            StringBuilder value = new StringBuilder();
-            if (obj.IsClass)
-            {
-               
-                fileName = obj.Name;
-                var fileAttbute = obj.GetCustomAttribute(typeof(EFTableAttribute));
-                if (fileAttbute != null)
-                {
-                    EFTableAttribute eFTable = fileAttbute as EFTableAttribute;
-                    fileName = eFTable.TableName;
-                    //int a = 1;Int32 o = 2;
-                }
-               
-                foreach (var propery in obj.GetProperties())
-                {
-                    var isGeberic = propery.PropertyType.IsGenericType;
-                    var propertys = propery.PropertyType.Name;
-                    var dd = propery.PropertyType.GetInterfaces();
-                    //Activator.CreateInstance();
-                    //获取声明此成员的类
-                    var blParent = propery.DeclaringType;
+            List<string> vs = new List<string>();
 
-                    if (blParent.Name != obj.Name)
-                    {
-                        continue;
-                    } 
-                    //if()
-                    var ddd = propery.GetValue(t);
-                    if (ddd != null) 
-                    {
-                        if (value.Length > 0)
-                        {
-                            value.Append(",");
-                        }
-                        strArry.Add(propery.Name);
-                        value.Append(ddd);
-                    }
-                }
-                //var str
-            }
-            var str = $"insert into {fileName}({string.Join(',', strArry)} values({value.ToString()}))";
+            var c = vs[0] ?? vs[1];
+
+            //int? a = 1;
+            //int? b = 2;
+            //var cc = a ?? b;
+
+            //if (t == null) { return false; }
+            //var obj = t.GetType();
+
+            //var fileName = "";
+            //List<string> strArry = new List<string>();
+            //StringBuilder value = new StringBuilder();
+            //if (obj.IsClass)
+            //{
+               
+            //    fileName = obj.Name;
+            //    var fileAttbute = obj.GetCustomAttribute(typeof(EFTableAttribute));
+            //    if (fileAttbute != null)
+            //    {
+            //        EFTableAttribute eFTable = fileAttbute as EFTableAttribute;
+            //        fileName = eFTable.TableName;
+            //        //int a = 1;Int32 o = 2;
+            //    }
+               
+            //    foreach (var propery in obj.GetProperties())
+            //    {
+            //        var isGeberic = propery.PropertyType.IsGenericType;
+            //        var propertys = propery.PropertyType.Name;
+            //        var dd = propery.PropertyType.GetInterfaces();
+            //        //Activator.CreateInstance();
+            //        //获取声明此成员的类
+            //        var blParent = propery.DeclaringType;
+
+            //        if (blParent.Name != obj.Name)
+            //        {
+            //            continue;
+            //        } 
+            //        //if()
+            //        var ddd = propery.GetValue(t);
+            //        if (ddd != null) 
+            //        {
+            //            if (value.Length > 0)
+            //            {
+            //                value.Append(",");
+            //            }
+            //            strArry.Add(propery.Name);
+            //            value.Append(ddd);
+            //        }
+            //    }
+            //    //var str
+            //}
+            //var str = $"insert into {fileName}({string.Join(',', strArry)} values({value.ToString()}))";
             return false;
         }
 

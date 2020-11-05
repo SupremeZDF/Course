@@ -70,13 +70,13 @@ namespace Course02.API.Controllers
         {
             //var de = AppDomain.CurrentDomain.BaseDirectory;
             //AssemBly.GetAssemBly();
-            A a;
-            AA aa = new AA();
-            a = aa as A;
+           // A a;
+           // AA aa = new AA();
+            //a = aa as A;
             //反射构造实列 构造函数传参
             var ccc = Activator.CreateInstance(typeof(int), new object[] { "123", 2 });
             var c = ccc.GetType().GetConstructors()[0].GetParameters();
-            a.name();
+            //a.name();
         }
 
         [HttpPost]
@@ -126,7 +126,10 @@ namespace Course02.API.Controllers
         public void oneReflection() 
         {
             Assembly assemBly = Assembly.Load("Course2.Model");
+            
             Type type = assemBly.GetType("Course2.Model.Itemplate.DbhelpTest");
+
+            type.GetMembers();
             //type.GetProperties()[0].SetValue();
             type.MakeGenericType();
             object ca = Activator.CreateInstance(type);
@@ -180,20 +183,20 @@ namespace Course02.API.Controllers
 
     }
 
-    public interface A 
-    {
-        void name();
-    }
+    //public interface A 
+    //{
+    //    void name();
+    //}
 
-    public class AA:A
-    {
-        public string q { get; set; }
+    //public class AA:A
+    //{
+    //    public string q { get; set; }
 
-        public int page { get; set; }
+    //    public int page { get; set; }
 
-        public void name()
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //    public void name()
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
 }
