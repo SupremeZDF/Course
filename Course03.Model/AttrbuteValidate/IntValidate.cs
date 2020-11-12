@@ -5,11 +5,27 @@ using System.Text;
 
 namespace Course03.Model.AttrbuteValidate
 {
-    public class IntValidate : FiledValidate
+    public class IntValidate : FiledValidateAttribute
     {
+
+        public IntValidate() 
+        {
+        
+        }
+
         public override bool RequestValidate(object obj)
         {
-            throw new NotImplementedException();
+            if (!AllowZero)
+            {
+                var i = (int)obj;
+                if (i==0)
+                    return false;
+                else
+                    return true;
+            }
+            return true;
         }
+
+        public bool AllowZero { get; set; }
     }
 }

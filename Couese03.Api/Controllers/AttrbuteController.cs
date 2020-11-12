@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
 using Course03.Model.TwoModel;
 using Course03.Model.Model;
+using Course03.Model.Runvalidate;
 
 namespace Couese03.Api.Controllers
 {
@@ -54,6 +55,12 @@ namespace Couese03.Api.Controllers
         public void ThreeAttrbute() 
         {
             TwoRunReflection.run();
+        }
+
+        [HttpGet]
+        public void Four() 
+        {
+            OneRunAttrbute.Run();
         }
     }
 }

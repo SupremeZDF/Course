@@ -5,8 +5,13 @@ using System.Text;
 
 namespace Course03.Model.AttrbuteValidate
 {
-    public class StringValidate : FiledValidate
+    public class StringValidate : FiledValidateAttribute
     {
+        public StringValidate() 
+        {
+        
+        }
+
         public override bool RequestValidate(object obj)
         {
             if (!AllowNullSpace) 
