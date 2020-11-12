@@ -15,7 +15,7 @@ using System.Net.Http.Headers;
 
 namespace Cource02.FactoryModel.Exercise.BaseserVice
 {
-    public class ExerciseService<T> : IExerciseService<T> where T : ExerciseBaseModel
+    public class ExerciseService<T> : IExerciseService<T> where T : ExerciseBaseModel,new()
     {
         public ExerciseResult Add(T t)
         {
@@ -74,7 +74,7 @@ namespace Cource02.FactoryModel.Exercise.BaseserVice
             try
             {
                 var sql = SqlBuirder<T>.FindAllstring;
-                List<T_User> t_Users = new List<T_User>();
+                List<T> t_Users = new List<T>();
                 using (SqlConnection sqlConnection = Configuration.sqlConnection()) 
                 {
                     SqlCommand sqlCommand = new SqlCommand();
@@ -85,7 +85,7 @@ namespace Cource02.FactoryModel.Exercise.BaseserVice
 
                     while (read.Read()) 
                     {
-                        T_User t_User = new T_User();
+                        T t_User = new T();
                         foreach (var i in propers) 
                         {
                             var d = read[i.Name];

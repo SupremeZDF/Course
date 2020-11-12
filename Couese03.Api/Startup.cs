@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Swashbuckle.AspNetCore;
 
 namespace Couese03.Api
 {
@@ -26,6 +28,20 @@ namespace Couese03.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(c => 
+            {
+                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo() 
+                {
+                    Description = "",
+                    Title = "",
+                    Version = "1.0",
+                    TermsOfService = null
+                });
+                var a = Directory.GetCurrentDirectory(); // D:\学习\架构版班_学习课程\Course1\Couese03.Api
+                 var basePath = AppDomain.CurrentDomain.BaseDirectory; //D:\学习\架构版班_学习课程\Course1\Couese03.Api\bin\Debug\netcoreapp3.1\netcoreapp3.1\
+                var path = System.IO.Path.Combine(basePath, "Couese03.Api.xml");
+                c.IncludeXmlComments(path);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +53,11 @@ namespace Couese03.Api
             }
 
             app.UseHttpsRedirection();
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c=> 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","123123");
+            });
             app.UseRouting();
 
             app.UseAuthorization();
