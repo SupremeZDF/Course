@@ -14,7 +14,7 @@ namespace Course03.Model.AttrbuteValidate
 
         public override bool RequestValidate(object obj)
         {
-            if (!AllowNullSpace) 
+            if (!AllowNullSpace)
             {
                 var i = obj.ToString().Length > 0;
                 if (i)
@@ -24,6 +24,7 @@ namespace Course03.Model.AttrbuteValidate
             }
             return true;
         }
+
 
         public bool AllowNullSpace { get; set; }
     }
