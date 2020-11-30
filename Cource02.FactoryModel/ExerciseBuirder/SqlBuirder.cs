@@ -23,37 +23,25 @@ namespace Cource02.FactoryModel.ExerciseBuirder
             var aaaa = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Static);
 
             var propers =typeof(T).GetProperties(BindingFlags.Public|BindingFlags.DeclaredOnly
-                |BindingFlags.Instance).Where(c=>c.GetCustomAttribute(typeof(ORMTableToolAttribute))==null
-                ||(c.GetCustomAttribute(typeof(ORMTableToolAttribute)) as ORMTableToolAttribute).Identity==false);
+                |BindingFlags.Instance).Where(c=>c.GetCustomAttribute(typeof(ormTableColumnNameAttribute))==null
+                ||(c.GetCustomAttribute(typeof(ormTableColumnNameAttribute)) as ormTableColumnNameAttribute).Identity==false);
 
-            var cloumn = string.Join(',',propers.Select(c => $"[{c.Name}]"));
+            var cloumn = string.Join(',',propers.Select(c => $"[{c.GetTableColumn()}]"));
 
-            var value = string.Join(',', propers.Select(c => $"@{c.Name}"));
-
-            var tableName = typeof(T).Name;
-            var attrbute = typeof(T).GetCustomAttribute(typeof(ORMTableToolAttribute)) as ORMTableToolAttribute;
-            if (attrbute != null && attrbute.TableName != "")  
-            {
-                tableName = attrbute.TableName;
-            }
+            var value = string.Join(',', propers.Select(c => $"@{c.GetTableColumn()}"));
+            //获取表名
+            var tableName = typeof(T).GetTableClassName();
             AddString = $@"insert into {tableName}({cloumn}) values({value})";
             FindAllSql();
         }
 
-        public static void FindAllSql() 
+        public static string FindAllSql() 
         {
             Type ty = typeof(T);
             var propers = ty.GetProperties(BindingFlags.Public|BindingFlags.Instance|BindingFlags.DeclaredOnly);
-            var tableName = ty.Name;
-            var ormtableattbute = ty.GetCustomAttribute(typeof(ORMTableToolAttribute)) as ORMTableToolAttribute;
-            if (ormtableattbute != null) 
-            {
-                if (ormtableattbute.TableName != "") 
-                {
-                    tableName = ormtableattbute.TableName;
-                }
-            }
-            FindAllstring = $"select {string.Join(',',propers.Select(c=>c.Name))} from {tableName}";
+            var tableName = ty.GetTableClassName();
+            FindAllstring = $"select {string.Join(',',propers.Select(c=>$"{c.GetTableColumn()} as {c.Name}"))} from {tableName}";
+            return FindAllstring;
         }
 
         public static void Name() 

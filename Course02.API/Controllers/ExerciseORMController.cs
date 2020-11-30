@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Cource02.FactoryModel.Exercise.Model;
 using Cource02.FactoryModel.Exercise.BaseserVice;
+using static Microsoft.AspNetCore.Razor.Language.TagHelperMetadata;
 
 namespace Course02.API.Controllers
 {
@@ -14,7 +15,7 @@ namespace Course02.API.Controllers
     public class ExerciseORMController : ControllerBase
     {
         [HttpGet]
-        public void One() 
+        public void One()
         {
             Cource02.FactoryModel.ExerciseBuirder.SqlBuirder<T_User>.Name();
             Cource02.FactoryModel.ExerciseBuirder.SqlBuirder<T_User>.Name();
@@ -22,17 +23,56 @@ namespace Course02.API.Controllers
         }
 
         [HttpGet]
-        public void Two() 
+        public void Two()
         {
-            T_User t_User = new T_User() 
+            T_User t_User = new T_User()
             {
-               Account_Number ="123",
-               User_Name="123",
-               Gender="男",
-               Password="123",
-               User_Mode=1
+                Account_Number = "123",
+                User_Name = "123",
+                Gender = "男",
+                Password = "123",
+                User_Mode = 1
             };
             new ExerciseService<T_User>().Select();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpGet]
+        public void Three()
+        {
+            T_User t_User = new T_User()
+            {
+                Account_Number = "123",
+                User_Name = "123",
+                Gender = "男",
+                Password = "123",
+                User_Mode = 1
+            };
+            new ExerciseService<T_User>().Add(t_User);
+        }
+
+        /// <summary>
+        /// 数据
+        /// </summary>
+        [HttpGet]
+        public void OneEnum()
+        {
+            Enum(AA.b|AA.c| AA.a );
+        }
+
+        public static void Enum(AA aA)
+        {
+            var c = (AA)aA;
+        }
+    }
+
+    public enum AA
+    {
+        a=1,
+        b=2,
+        c=3,
+        d=4
     }
 }

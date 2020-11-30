@@ -129,6 +129,8 @@ namespace Course02.API.Controllers
             
             Type type = assemBly.GetType("Course2.Model.Itemplate.DbhelpTest");
 
+            type = type.MakeGenericType(new Type[] { });
+
             type.GetMembers();
             //type.GetProperties()[0].SetValue();
             type.MakeGenericType();
@@ -176,7 +178,7 @@ namespace Course02.API.Controllers
 
             //泛型方法 threeShow
             MethodInfo info6 = type.GetMethod("threeShow");
-            info6.MakeGenericMethod();
+            //info6.MakeGenericMethod();
             info6 = info6.MakeGenericMethod(new Type[] { typeof(int),typeof(string),typeof(double)});
             info6.Invoke(ca, new object[] { 12,"21",1.20 });
         }

@@ -13,9 +13,5 @@ namespace Cource02.FactoryModel.Exercise.Tool
         }
 
         public string TableName { get; set; }
-
-        public string ParameterName { get; set; }
-
-        public bool Identity { get; set; }
     }
 }

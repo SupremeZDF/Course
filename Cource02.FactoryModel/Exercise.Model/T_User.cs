@@ -8,7 +8,7 @@ namespace Cource02.FactoryModel.Exercise.Model
     [ORMTableTool(TableName = "T_User")]
     public class T_User : ExerciseBaseModel
     {
-        [ORMTableTool(Identity = true)]
+        [ormTableColumnName(Identity = true,isPrimarky =true)]
         public Int32 id { get; set; }
 
         public string Account_Number { get; set; }

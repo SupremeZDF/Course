@@ -110,6 +110,8 @@ namespace Course02.API.Controllers
         }
 
 
+
+
         [HttpGet]
         public void EFCore()
         {
@@ -132,9 +134,10 @@ namespace Course02.API.Controllers
             DBSqlserver.OneExercise(new OneGeneric());
         }
 
+        
 
         [HttpGet]
-        public AA Name()
+        public AAc Name()
         {
             //AA c = new AA() 
             //{
@@ -158,7 +161,7 @@ namespace Course02.API.Controllers
     
     }
 
-    public class AA
+    public class AAc
     {
 
         public dddd dddd { get; set; }

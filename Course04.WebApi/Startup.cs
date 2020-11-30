@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
@@ -36,7 +37,10 @@ namespace Course04.WebApi
                     TermsOfService = null,
                     Description = "webapiÎÄµµ"
                 });
-                //var bath
+                var a = Directory.GetCurrentDirectory();
+                var b = AppDomain.CurrentDomain.BaseDirectory;
+                var cc = Path.Combine(b, "Course04.WebApi.xml");
+                c.IncludeXmlComments(cc);
             });
         }
 
@@ -49,6 +53,11 @@ namespace Course04.WebApi
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c=> {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","sadads");
+            });
 
             app.UseRouting();
 
