@@ -13,6 +13,12 @@ namespace Course04.Model.Model
         public delegate void NonReturnWithPara();
         public delegate void withRetrunPara();
         public delegate OneDeleggate withReturnWithPara(out int x, ref int y);
+        public OneDeleggate deleggate = new OneDeleggate();
+
+        public OneDeleggate() 
+        {
+            OneDeleggate deleggates = new OneDeleggate();
+        }
 
         public static void twoRun(string a, NonReturnWithPara b) 
         {
@@ -36,7 +42,7 @@ namespace Course04.Model.Model
             
         }
 
-        public void Run()
+        public void Run(int s)
         {
             //var ty = typeof(int);
             ////ty.GetConstructor;
@@ -54,8 +60,10 @@ namespace Course04.Model.Model
         //
         public void OneDelegate() 
         {
-            
+            //Action<int> action = new Action<int>(this.Run);
+            //Action<int,string,DateTime>
         }
+
     }
 
     public class OneRunA 

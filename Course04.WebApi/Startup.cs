@@ -41,6 +41,8 @@ namespace Course04.WebApi
                 var b = AppDomain.CurrentDomain.BaseDirectory;
                 var cc = Path.Combine(b, "Course04.WebApi.xml");
                 c.IncludeXmlComments(cc);
+                var d = Directory.GetDirectories("./");
+                var dd = Directory.GetDirectories("/");
             });
         }
 
