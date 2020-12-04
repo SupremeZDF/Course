@@ -51,6 +51,10 @@ namespace Course04.Model.SqlHelper
                             User_Mode = i.Field<int?>("User_Mode")
                         }).ToList();
             }
-        }
+            //if (new int[] { 1, 2, 3, 4 }.Contains(1)) 
+            //{
+            
+            //}
+            //var i = ;
     }
 }

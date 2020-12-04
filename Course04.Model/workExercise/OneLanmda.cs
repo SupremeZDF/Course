@@ -28,7 +28,7 @@ namespace Course04.Model.workExercise
         public static void DataLamdaExercise()
         {
             var data = GetHelperDataList.GetlsitUser();
-            var groupBy = data.GroupBy();
+            //var groupBy = data.GroupBy();
             var tjOne = data.GetTs((s) => s.id > 2 && s.User_Mode > 0);
             foreach (var i in tjOne) 
             {
