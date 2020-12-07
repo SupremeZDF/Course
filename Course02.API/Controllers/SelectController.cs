@@ -128,7 +128,7 @@ namespace Course02.API.Controllers
             Assembly assemBly = Assembly.Load("Course2.Model");
             
             Type type = assemBly.GetType("Course2.Model.Itemplate.DbhelpTest");
-
+            //var s = assemBly.GetTypes().Where(s=>s.Name=="");
             type = type.MakeGenericType(new Type[] { });
 
             type.GetMembers();

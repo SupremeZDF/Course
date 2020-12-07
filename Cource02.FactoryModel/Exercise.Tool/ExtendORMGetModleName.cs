@@ -39,5 +39,4 @@ namespace Cource02.FactoryModel.Exercise.Tool
             }
         }
     }
-    }
 }

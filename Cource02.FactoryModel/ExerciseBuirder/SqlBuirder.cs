@@ -40,7 +40,19 @@ namespace Cource02.FactoryModel.ExerciseBuirder
             Type ty = typeof(T);
             var propers = ty.GetProperties(BindingFlags.Public|BindingFlags.Instance|BindingFlags.DeclaredOnly);
             var tableName = ty.GetTableClassName();
-            FindAllstring = $"select {string.Join(',',propers.Select(c=>$"{c.GetTableColumn()} as {c.Name}"))} from {tableName}";
+            FindAllstring = $@"select {string.Join(',',propers.Select
+                (c=>
+                {
+                if (c.GetTableColumn() != c.Name && c.GetTableColumn() != "" && c.GetTableColumn() != null)
+                    { 
+                        return $"{c.GetTableColumn()} as {c.Name}";
+                    }
+                    else
+                    {
+                        return $"{c.Name}";
+                    }
+                })
+                )} from {tableName}";
             return FindAllstring;
         }
 

@@ -36,5 +36,11 @@ namespace Course04.WebApi.Controllers
         {
             OneLanmda.DataLamdaExercise();
         }
+
+        [HttpPost]
+        public void LinqOne() 
+        {
+            LinqLandaShujuTest.T_UserLamda();
+        }
     }
 }
