@@ -40,6 +40,7 @@ namespace Course04.WebApi.Controllers
         [HttpPost]
         public void LinqOne() 
         {
+            var d = this.GetHashCode();
             LinqLandaShujuTest.T_UserLamda();
         }
     }
