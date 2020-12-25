@@ -93,8 +93,10 @@ namespace Course04.Model.workExercise
                           join j in T_Questionlist on i.id equals j.UserID into yu
                           select yu;
 
+            var ddd = from iss in t_userlist where iss.Account_Number == "12" group iss by iss.IntroDuce into dsd orderby dsd.Key select new { };
+
             //分组
-            IEnumerable<IGrouping<int?, T_QuestionTable>> linqTwo = from i in T_Questionlist group i by i.UserID into de select de;
+            IEnumerable < IGrouping<int?, T_QuestionTable> > linqTwo = from i in T_Questionlist group i by i.UserID into de select de;
 
             foreach (IGrouping<int?, T_QuestionTable> queryable in linqTwo)
             {
@@ -108,8 +110,8 @@ namespace Course04.Model.workExercise
                 }
             }
 
-            var linqTwos = from i in T_Questionlist group i by i.UserID into de select de;
-
+            var linqTwos = from i in T_Questionlist select new { };
+            
             //排序
             var linqTwoss = from i in T_Questionlist group i by i.UserID into s orderby s.Key descending select s;
 
@@ -145,6 +147,9 @@ namespace Course04.Model.workExercise
                                names = k,
                                name = dept == null ? "" : k.Headline
                            };
+
+            //IQueryable<int> s;
+            //DataSet dataSet = sss;
             //linqFIve.Union();
             //foreach (var i in linqFIve)
             //{

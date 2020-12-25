@@ -1,0 +1,113 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Layui/layui-v2.5.6/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/js/jquery-3.3.1.js"></script>
+    @*<script src="~/Layui/layui-v2.5.6/layui/lay/modules/jquery.js"></script>*@
+    <script src="~/Layui/layui-v2.5.6/layui/layui.js"></script>
+    <title>Image64</title>
+</head>
+<body>
+    <img src="" id="image" style="width:100px;height:100px;" class="img-rounded">
+    <input id="file" type="file" value="文件上传" />
+    <button type="button" class="layui-btn layui-btn-normal">一个标准的按钮</button>
+    <button type="button" id="submit" class="layui-btn layui-btn-normal">提交</button>
+
+    <div>
+        <strong><em> adasdasda</em></strong>
+    </div>
+    <script>
+        document.getElementById("file").onchange = function () {
+            if (window.FileReader) {
+                var reader = new FileReader();
+                // add your code here
+                //reader.readAsDataURL(this.files[0]); //异步读取文件内容，结果用data: url的字符串形式表示
+                console.log(this.files[0]);
+
+                reader.readAsDataURL(this.files[0]);
+                /*当读取操作成功完成时调用*/
+                reader.onload = function (e) {
+                    console.log(e); //查看对象属性里面有个result属性，属性值，是一大串的base64格式的东西，这个就是我们要的图片
+                    //console.log(this.result);
+                    console.log(reader.result);
+                    $("#image").attr("src", reader.result);
+                }
+            } else {
+                alert("Not supported by your browser!");
+            }
+            //console.log(this.files[0]);
+            //FileReader reader = new FileReader(); //FileReader主要用于将文件内容读入内存
+            //read.readAsDataURL(this.files[0]); //异步读取文件内容，结果用data: url的字符串形式表示
+            ///*当读取操作成功完成时调用*/
+            //reader.onload = function (e)
+            //{
+            //    console.log(e); //查看对象属性里面有个result属性，属性值，是一大串的base64格式的东西，这个就是我们要的图片
+            //    console.log(this.result);
+            //    console.log(reader.result);
+            //    $("#image").attr("src", reader.result);
+            //}
+        }
+
+        document.getElementById("submit").addEventListener("click", function () {
+
+            var file = document.getElementById("file");
+
+            if (file.value == "") {
+                console.log("222222222222222222");
+                return;
+            }
+            console.log(file.value);
+            console.log(file.files[0].name)
+            console.log(JSON.stringify(file.files));
+
+
+            if (window.XMLHttpRequest) {
+                var xml = new XMLHttpRequest();
+                xml.open("post", "https://localhost:5001/api/ImageTool/ImageToOne", true);
+                var formdata = new FormData();
+                formdata.append(file.files[0].name, file.files[0]);
+                formdata.append(file.files[0].name, file.files[0]);
+                //formdata.append(file.files[0].name, file.files[0]);
+                xml.setRequestHeader("Content-type", "multipart/form-data");
+                xml.onload = function () {
+                    if (xml.readyState == 4 && xml.status == 200) {
+                        console.log(成功);
+                    }
+                }
+                xml.send(formdata);
+
+                //                 request.readyStatus一共有5中状态：
+
+                // 0 － （未初始化）还没有调用send()方法
+                // 1 － （载入）已调用send()方法，正在发送请求
+                // 2 － （载入完成）send()方法执行完成，已经接收到全部响应内容
+                // 3 － （交互）正在解析响应内容
+                // 4 － （完成）响应内容解析完成，可以在客户端调用了
+            }
+
+            // $.ajax({
+            //     type: "post",
+            //     contentType: "application/json",
+            //     data: "",
+            //     dataType: "json",
+            //     xhrFields: {
+            //         withCredentials: true
+            //     },
+            //     url: "https://localhost:44397/api/ImageTool/ImageToOne",
+            //     async: true,
+            //     //xhrFields:{}
+            //     success: function() {
+
+            //     }
+            // })
+        })
+    </script>
+</body>
+</html>

@@ -36,5 +36,7 @@ namespace Course04.Model.LinqModel
         public string Imageadsasdasd { get; set; }
 
         public int User_Mode { get; set; }
+
+        public List<string> vs { get; set; }
     }
 }
