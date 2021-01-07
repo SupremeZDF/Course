@@ -21,7 +21,14 @@ namespace Course04.WebApi.Controllers
 
                 var s = i;
             };
+
+            //AbstaartClass a = new AbstaartClass();
         }
+    }
+
+    public abstract class AbstaartClass {
+
+        public void Nmae() { }
     }
 
     public class Image { 

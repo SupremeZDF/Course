@@ -12,7 +12,7 @@ namespace Course04.Model.workExercise
 
         private double _price { get; set; }
 
-        public event EventHandler lehandler;
+        public  event EventHandler lehandler;
 
         public double price { 
             get

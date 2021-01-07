@@ -33,7 +33,6 @@ namespace Course1
                         // additional fields by chaining methods off SingleApiVersion.
                         //
                         c.SingleApiVersion("v1", "Course1");
-                        c.IncludeXmlComments(string.Format("{0}/bin/Course1.xml",System.AppDomain.CurrentDomain.BaseDirectory));
 
                         // If you want the output Swagger docs to be indented properly, enable the "PrettyPrint" option.
                         //

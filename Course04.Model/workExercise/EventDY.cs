@@ -16,6 +16,14 @@ namespace Course04.Model.workExercise
             };
             lesson.lehandler += new EventObject().Event;
             lesson.price = 3999;
+
+            //Lesson.lehandler+= new EventObject().Event;
+            //Lesson.lehandler(null,null);
         }
+    }
+
+    public class StaticClass { 
+    
+        public static string a { get; set; }
     }
 }

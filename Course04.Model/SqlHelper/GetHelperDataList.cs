@@ -29,7 +29,7 @@ namespace Course04.Model.SqlHelper
             return Configuration;
         }
 
-        public static List<T_UserTable> GetlsitUser()
+        public  static List<T_UserTable> GetlsitUser()
         {
             using (SqlConnection connection = new SqlConnection(Configuration["configstring"]))
             {
@@ -123,7 +123,7 @@ namespace Course04.Model.SqlHelper
                 T result = new T();
                 foreach (var j in propertys) 
                 {
-                    if (data.Columns.Contains(j.Name)) 
+                    if ( data.Columns.Contains(j.Name)) 
                     {
                         //CanWrite 如果可以写入此属性则为真  Canread 如果可以写入此属性 则为真
                         if (!j.CanWrite) 
@@ -142,7 +142,7 @@ namespace Course04.Model.SqlHelper
         }
     }
 
-    public static class DataSqlTool
+    public  static class DataSqlTool
     {
 
         public static string GetTableName(this Type type)
@@ -158,7 +158,7 @@ namespace Course04.Model.SqlHelper
                     return sqlTable.TableName;
                 }
                 return type.Name;
-            }
+            } 
             else
             {
                 return type.Name;
