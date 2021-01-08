@@ -14,6 +14,34 @@ namespace Course04.WebApi.Controllers
     [ApiController]
     public class EventSJMSController : ControllerBase
     {
+
+        [HttpGet]
+        public void FourExpression() 
+        {
+            GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate = new GenericexpressPrivate<T_User, T_AdminUser>();
+            GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate1 = new GenericexpressPrivate<T_User, T_AdminUser>();
+
+            genericexpressPrivate.Consolog();
+            genericexpressPrivate1.Consolog();
+
+            GenericexpressPrivate<T_AdminUser, T_AdminUser> genericexpressPrivate2 = new GenericexpressPrivate<T_AdminUser, T_AdminUser>();
+            GenericexpressPrivate<T_AdminUser, T_AdminUser> genericexpressPrivate3 = new GenericexpressPrivate<T_AdminUser, T_AdminUser>();
+            genericexpressPrivate2.Consolog();
+            genericexpressPrivate3.Consolog();
+
+            GenericexpressPrivate<T_User, T_AdminUser>.Consologs();
+            GenericexpressPrivate<T_AdminUser, T_AdminUser>.Consologs();
+
+            genericexpressPrivate.Consolog();
+            genericexpressPrivate1.Consolog();
+
+
+            var a = new GenarelExpressionPublic();
+            var b = new GenarelExpressionPublic();
+            a.Consolog();
+            b.Consolog();
+        }
+
         /// <summary>
         /// 
         /// </summary>

@@ -37,7 +37,7 @@ namespace Course04.Model.DesignRemote
 
 
         /// <summary>
-        /// 表演结束
+        /// 表演结束 
         /// </summary>
         public virtual void ShowEnd()
         {
