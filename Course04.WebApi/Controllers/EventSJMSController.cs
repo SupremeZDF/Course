@@ -16,18 +16,40 @@ namespace Course04.WebApi.Controllers
     {
 
         [HttpGet]
-        public void FourExpression() 
+        public void FourExpression()
         {
-            GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate = new GenericexpressPrivate<T_User, T_AdminUser>();
-            GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate1 = new GenericexpressPrivate<T_User, T_AdminUser>();
 
-            genericexpressPrivate.Consolog();
-            genericexpressPrivate1.Consolog();
 
-            GenericexpressPrivate<T_AdminUser, T_AdminUser> genericexpressPrivate2 = new GenericexpressPrivate<T_AdminUser, T_AdminUser>();
-            GenericexpressPrivate<T_AdminUser, T_AdminUser> genericexpressPrivate3 = new GenericexpressPrivate<T_AdminUser, T_AdminUser>();
-            genericexpressPrivate2.Consolog();
-            genericexpressPrivate3.Consolog();
+
+
+            GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate = new GenericexpressPrivate<T_User, T_AdminUser>((c) => { var d = 2311; return new T_AdminUser() { Id = 2311 }; });
+            var aac = genericexpressPrivate.aac;
+            var ac = GenericexpressPrivate<T_User, T_AdminUser>.ac;
+
+            var aaaa = typeof(GenericexpressPrivate<T_User, T_AdminUser>).Name;
+
+            GenericexpressPrivate<T_User, T_AdminUser>.Names();
+            
+               GenericexpressPrivate <T_User, T_AdminUser> genericexpressPrivate1 = new GenericexpressPrivate<T_User, T_AdminUser>((c) => { var d = 23333; return new T_AdminUser() { Id = 23333 }; });
+            var aacs = genericexpressPrivate1.aac;
+            var acs = GenericexpressPrivate<T_User, T_AdminUser>.ac;
+            //var bb = GenericexpressPrivate<T_User, T_AdminUser>.Func(new T_User());
+            //genericexpressPrivate.Consolog();
+            //genericexpressPrivate1.Consolog();
+
+            GenericexpressPrivate<T_AdminUser, T_AdminUser> genericexpressPrivate2 = new GenericexpressPrivate<T_AdminUser, T_AdminUser>((c) => { var d = "23111"; return new T_AdminUser() { Name = "23111" }; });
+            var ds = GenericexpressPrivate<T_AdminUser, T_AdminUser>.ac;
+
+            var aaaas = typeof(GenericexpressPrivate<T_AdminUser, T_AdminUser>).Name;
+            GenericexpressPrivate<T_AdminUser, T_AdminUser> genericexpressPrivate3 = new GenericexpressPrivate<T_AdminUser, T_AdminUser>((c) => { var d = "23333b"; return new T_AdminUser() { Name = "23333b" }; });
+            var dss = GenericexpressPrivate<T_AdminUser, T_AdminUser>.ac;
+
+
+            var d = GenericexpressPrivate<T_User, T_AdminUser>.ac; 
+            //genericexpressPrivate2.Consolog();
+            //genericexpressPrivate3.Consolog();
+
+
 
             GenericexpressPrivate<T_User, T_AdminUser>.Consologs();
             GenericexpressPrivate<T_AdminUser, T_AdminUser>.Consologs();
@@ -46,28 +68,28 @@ namespace Course04.WebApi.Controllers
         /// 
         /// </summary>
         [HttpGet]
-        public void TwoRunExperssion() 
+        public void TwoRunExperssion()
         {
             OneExercise.OneExpersion();
         }
 
         [HttpGet]
-        public void ThreeRunExpression() 
+        public void ThreeRunExpression()
         {
             OneExercise.TwoExpression();
         }
 
         [HttpGet]
-        public void RunReflection() 
+        public void RunReflection()
         {
             Assembly assembly = Assembly.Load("Course04.Model");
-            var da = assembly.GetTypes().Where(i => i.Namespace == "Course04.Model.DesignRemote"&&i.BaseType!=null && i.BaseType.Name== "KoujPerform").ToList(); 
-            
+            var da = assembly.GetTypes().Where(i => i.Namespace == "Course04.Model.DesignRemote" && i.BaseType != null && i.BaseType.Name == "KoujPerform").ToList();
+
             var c = assembly.GetType("Course04.Model.DesignRemote.NorthShow").GetInterfaces();
             var cc = assembly.GetType("Course04.Model.DesignRemote.NorthShow").BaseType.Name;
-            foreach (var i in da) 
+            foreach (var i in da)
             {
-                 
+
             }
 
             try
@@ -82,7 +104,7 @@ namespace Course04.WebApi.Controllers
                     Ruler = "张三尺子",
                     WenDu = 400
                 };
-                koujPerform.showEnd+=new EventTool().ThreeEvent;
+                koujPerform.showEnd += new EventTool().ThreeEvent;
                 koujPerform.show();
 
                 EastShow koujPerform1 = new EastShow()
@@ -94,7 +116,7 @@ namespace Course04.WebApi.Controllers
                     Ruler = "张三尺子",
                     WenDu = 400
                 };
-                
+
                 foreach (var i in koujPerform1.GetType().GetProperties())
                 {
                     if (i.Name == "HB")
