@@ -29,8 +29,8 @@ namespace Course04.WebApi.Controllers
             var aaaa = typeof(GenericexpressPrivate<T_User, T_AdminUser>).Name;
 
             GenericexpressPrivate<T_User, T_AdminUser>.Names();
-            
-               GenericexpressPrivate <T_User, T_AdminUser> genericexpressPrivate1 = new GenericexpressPrivate<T_User, T_AdminUser>((c) => { var d = 23333; return new T_AdminUser() { Id = 23333 }; });
+
+            GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate1 = new GenericexpressPrivate<T_User, T_AdminUser>((c) => { var d = 23333; return new T_AdminUser() { Id = 23333 }; });
             var aacs = genericexpressPrivate1.aac;
             var acs = GenericexpressPrivate<T_User, T_AdminUser>.ac;
             //var bb = GenericexpressPrivate<T_User, T_AdminUser>.Func(new T_User());
@@ -45,7 +45,7 @@ namespace Course04.WebApi.Controllers
             var dss = GenericexpressPrivate<T_AdminUser, T_AdminUser>.ac;
 
 
-            var d = GenericexpressPrivate<T_User, T_AdminUser>.ac; 
+            var d = GenericexpressPrivate<T_User, T_AdminUser>.ac;
             //genericexpressPrivate2.Consolog();
             //genericexpressPrivate3.Consolog();
 
