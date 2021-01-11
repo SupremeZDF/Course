@@ -19,8 +19,30 @@ namespace Course04.WebApi.Controllers
         public void FourExpression()
         {
 
+            OnModelTool onModelTool = new OnModelTool()
+            {
+                Id = 1,
+                Name = "123",
+                Age = 12,
+                Email = "123",
+                Address = "123",
+                RuM = "123",
+                xn = 123
+            };
 
+            TwoModelToolr twoModelToolr = new TwoModelToolr()
+            {
+                Id = onModelTool.Id,
+                Name = onModelTool.Name
+            };
 
+            TwoModelToolr twoModelTool = ExpressGenericFunc<OnModelTool, TwoModelToolr>.ToClass(onModelTool);
+            TwoModelToolr twoModelToo2 = ExpressGenericFunc<OnModelTool, TwoModelToolr>.ToClass(onModelTool);
+            ExpressionTool expressionTool = ExpressGenericFunc<OnModelTool, ExpressionTool>.ToClass(onModelTool);
+
+            var day = new GenericexpressPublic();
+            var fileds = day.GetType().GetFields();
+            var filedss = day.GetType().GetProperties();
 
             GenericexpressPrivate<T_User, T_AdminUser> genericexpressPrivate = new GenericexpressPrivate<T_User, T_AdminUser>((c) => { var d = 2311; return new T_AdminUser() { Id = 2311 }; });
             var aac = genericexpressPrivate.aac;
