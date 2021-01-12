@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Course04.Model.DesignRemote;
 using System.Reflection;
 using Course04.Model.ExperssionExercise;
+using System.Linq.Expressions;
 
 namespace Course04.WebApi.Controllers
 {
@@ -14,6 +15,25 @@ namespace Course04.WebApi.Controllers
     [ApiController]
     public class EventSJMSController : ControllerBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpGet]
+        public void ExpressionVistor() 
+        {
+            Expression<Func<int, int, int>> expression = (m, n) => m * n + 2;
+            Expression expression1 = expression;
+            
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [HttpGet]
+        public void ExerciseOneTool() 
+        {
+        
+        }
 
         [HttpGet]
         public void FourExpression()
@@ -38,6 +58,7 @@ namespace Course04.WebApi.Controllers
 
             TwoModelToolr twoModelTool = ExpressGenericFunc<OnModelTool, TwoModelToolr>.ToClass(onModelTool);
             TwoModelToolr twoModelToo2 = ExpressGenericFunc<OnModelTool, TwoModelToolr>.ToClass(onModelTool);
+
             ExpressionTool expressionTool = ExpressGenericFunc<OnModelTool, ExpressionTool>.ToClass(onModelTool);
 
             var day = new GenericexpressPublic();

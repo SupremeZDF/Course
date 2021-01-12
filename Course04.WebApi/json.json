@@ -1,3 +1,5 @@
 {
-  "configstring": "Data Source=.;Initial Catalog=ZhiHu;Integrated Security=True"
+  "configstring": "Data Source=.;Initial Catalog=ZhiHu;Integrated Security=True",
+  "logpath": "D:\\学习\\架构版班_学习课程\\LogPath",
+  "LogMovePath": "D:\\学习\\架构版班_学习课程\\LogMOvePath"
 }
