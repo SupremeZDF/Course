@@ -21,7 +21,6 @@ namespace Course04.WebApi.Controllers
 
                 var s = i;
             };
-
             //AbstaartClass a = new AbstaartClass();
         }
     }

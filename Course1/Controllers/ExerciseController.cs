@@ -41,7 +41,6 @@ namespace Course1.Controllers
             Course1Model.OneModel.GenericCache<int> genericCache = new GenericCache<int>();
            
             Course1Model.OneModel.GenericCache<string> genericCache1 = new GenericCache<string>();
-
             //TestStatic testStatic = new TestStatic();
             //TestStatic testStatic1 = new TestStatic();
         }

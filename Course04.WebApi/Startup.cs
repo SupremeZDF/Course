@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Cors;
 using Course04.Model.CrosModel;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 namespace Course04.WebApi
 {
@@ -35,6 +37,10 @@ namespace Course04.WebApi
             services.Configure<CorsOptions>(Configuration.GetSection("AllowedHosts"));
             //OptionConfigure(services)
 
+            services.AddControllers().AddJsonOptions(x =>
+            {
+                x.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+            });
 
             services.AddCors(options =>
             {
