@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,21 @@ namespace WinFrom
     {
         public Form1()
         {
-           
+            //DriveInfo[] driveInfos = DriveInfo.GetDrives();
+
+            ////获取驱动盘符信息
+            //foreach (DriveInfo drive in driveInfos)
+            //{
+
+            //    if (drive.IsReady)
+            //    {
+            //        Console.WriteLine($"{drive.DriveType}_{drive.VolumeLabel}_{drive.Name}_{drive.TotalSize}_{drive.TotalFreeSpace}");
+            //    }
+            //    else
+            //    {
+            //        Console.WriteLine($"{drive.DriveType}");
+            //    }
+            //}
             InitializeComponent();
         }
 
@@ -42,7 +57,8 @@ namespace WinFrom
         private void Form1_Load(object sender, EventArgs e)
         {
             ImageTool.ImageTool.CreateValidateGraphic();
-            pictureBox1.Image = Image.FromFile(ImageTool.ImageTool.ImageUrl);
+            pictureBox1.BackgroundImage=Image.FromFile(ImageTool.ImageTool.ImageUrl);
+            pictureBox1.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void button3_Click(object sender, EventArgs e)

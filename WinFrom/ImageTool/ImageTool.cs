@@ -89,6 +89,11 @@ namespace WinFrom.ImageTool
                     //画图片的边框线
                     graphics.DrawRectangle(new Pen(Color.Silver), 0, 0, bitmap.Width - 1, bitmap.Height - 1);
                 }
+
+                if (!Directory.Exists(ImagePath)) 
+                {
+                    Directory.CreateDirectory(ImagePath);
+                }
                 imageName = Guid.NewGuid().ToString();
                 ImageUrl = Path.Combine(ImagePath, imageName);
                 bitmap.Save(ImageUrl, ImageFormat.Jpeg);
@@ -107,6 +112,65 @@ namespace WinFrom.ImageTool
                 bitmap.Dispose();
                 //return new byte[] {};
             }
+        }
+
+        public static void VerificationCode()
+        {
+            Bitmap bitmapobj = new Bitmap(300, 300);
+            //在Bitmap上创建一个新的Graphics对象
+            Graphics g = Graphics.FromImage(bitmapobj);
+            g.DrawRectangle(Pens.Black, new Rectangle(0, 0, 150, 50));//画矩形
+            g.FillRectangle(Brushes.White, new Rectangle(1, 1, 149, 49));
+            g.DrawArc(Pens.Blue, new Rectangle(10, 10, 140, 10), 150, 90);//干扰线
+            string[] arrStr = new string[] { "我", "们", "孝", "行", "白", "到", "国", "中", "来", "真" };
+            Random r = new Random();
+            int i;
+            for (int j = 0; j < 4; j++)
+            {
+                i = r.Next(10);
+                g.DrawString(arrStr[i], new Font("微软雅黑", 15), Brushes.Red, new PointF(j * 30, 10));
+            }
+            var imageNames = Guid.NewGuid().ToString();
+            var ImageUrls = Path.Combine(ImagePath, imageName);
+            bitmapobj.Save(Path.Combine(ImageUrls, "Verif.jpg"), ImageFormat.Jpeg);
+            bitmapobj.Dispose();
+            g.Dispose();
+        }
+
+        /// <summary>
+        /// 按比例缩放,图片不会变形，会优先满足原图和最大长宽比例最高的一项
+        /// </summary>
+        /// <param name="oldPath"></param>
+        /// <param name="newPath"></param>
+        /// <param name="maxWidth"></param>
+        /// <param name="maxHeight"></param>
+        public static void CompressPercent(string oldPath, string newPath, int maxWidth, int maxHeight)
+        {
+            Image _sourceImg = Image.FromFile(oldPath);
+            double _newW = (double)maxWidth;
+            double _newH = (double)maxHeight;
+            double percentWidth = (double)_sourceImg.Width > maxWidth ? (double)maxWidth : (double)_sourceImg.Width;
+
+            if ((double)_sourceImg.Height * (double)percentWidth / (double)_sourceImg.Width > (double)maxHeight)
+            {
+                _newH = (double)maxHeight;
+                _newW = (double)maxHeight / (double)_sourceImg.Height * (double)_sourceImg.Width;
+            }
+            else
+            {
+                _newW = percentWidth;
+                _newH = (percentWidth / (double)_sourceImg.Width) * (double)_sourceImg.Height;
+            }
+            Image bitmap = new Bitmap((int)_newW, (int)_newH);
+            Graphics g = Graphics.FromImage(bitmap);
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.Clear(Color.Transparent);
+            g.DrawImage(_sourceImg, new Rectangle(0, 0, (int)_newW, (int)_newH), new Rectangle(0, 0, _sourceImg.Width, _sourceImg.Height), GraphicsUnit.Pixel);
+            _sourceImg.Dispose();
+            g.Dispose();
+            bitmap.Save(newPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+            bitmap.Dispose();
         }
     }
 }
