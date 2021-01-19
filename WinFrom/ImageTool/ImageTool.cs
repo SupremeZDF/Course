@@ -13,7 +13,7 @@ namespace WinFrom.ImageTool
     public class ImageTool
     {
 
-        public static string ImagePath = "D:\\学习\\架构版班_学习课程\\ImagePath";
+        public static string ImagePath = "C:\\ImagePath";
 
         public static string imageName = "";
 
@@ -95,7 +95,7 @@ namespace WinFrom.ImageTool
                     Directory.CreateDirectory(ImagePath);
                 }
                 imageName = Guid.NewGuid().ToString();
-                ImageUrl = Path.Combine(ImagePath, imageName);
+                ImageUrl = Path.Combine(ImagePath, imageName) + ".jpeg";
                 bitmap.Save(ImageUrl, ImageFormat.Jpeg);
                 //保存图片数据
                 //MemoryStream memoryStream = new MemoryStream();
@@ -110,6 +110,7 @@ namespace WinFrom.ImageTool
             {
                 graphics.Dispose();
                 bitmap.Dispose();
+                Log.ErrorLog(ex);
                 //return new byte[] {};
             }
         }
@@ -131,7 +132,7 @@ namespace WinFrom.ImageTool
                 g.DrawString(arrStr[i], new Font("微软雅黑", 15), Brushes.Red, new PointF(j * 30, 10));
             }
             var imageNames = Guid.NewGuid().ToString();
-            var ImageUrls = Path.Combine(ImagePath, imageName);
+            var ImageUrls = Path.Combine(ImagePath, imageNames)+ ".jpeg";
             bitmapobj.Save(Path.Combine(ImageUrls, "Verif.jpg"), ImageFormat.Jpeg);
             bitmapobj.Dispose();
             g.Dispose();
@@ -144,33 +145,79 @@ namespace WinFrom.ImageTool
         /// <param name="newPath"></param>
         /// <param name="maxWidth"></param>
         /// <param name="maxHeight"></param>
-        public static void CompressPercent(string oldPath, string newPath, int maxWidth, int maxHeight)
+        public static bool CompressPercent(string oldPath, string newPath, int maxWidth, int maxHeight)
         {
-            Image _sourceImg = Image.FromFile(oldPath);
-            double _newW = (double)maxWidth;
-            double _newH = (double)maxHeight;
-            double percentWidth = (double)_sourceImg.Width > maxWidth ? (double)maxWidth : (double)_sourceImg.Width;
+            try
+            {
+                Image _sourceImg = Image.FromFile(oldPath);
+                double _newW = (double)maxWidth;
+                double _newH = (double)maxHeight;
+                double percentWidth = (double)_sourceImg.Width > maxWidth ? (double)maxWidth : (double)_sourceImg.Width;
 
-            if ((double)_sourceImg.Height * (double)percentWidth / (double)_sourceImg.Width > (double)maxHeight)
-            {
-                _newH = (double)maxHeight;
-                _newW = (double)maxHeight / (double)_sourceImg.Height * (double)_sourceImg.Width;
+                if ((double)_sourceImg.Height * (double)percentWidth / (double)_sourceImg.Width > (double)maxHeight)
+                {
+                    _newH = (double)maxHeight;
+                    _newW = (double)maxHeight / (double)_sourceImg.Height * (double)_sourceImg.Width;
+                }
+                else
+                {
+                    _newW = percentWidth;
+                    _newH = (percentWidth / (double)_sourceImg.Width) * (double)_sourceImg.Height;
+                }
+                Image bitmap = new Bitmap((int)_newW, (int)_newH);
+                Graphics g = Graphics.FromImage(bitmap);
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                // 设置画布的描绘质量         
+                g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                g.Clear(Color.Transparent);
+                g.DrawImage(_sourceImg, new Rectangle(0, 0, (int)_newW, (int)_newH), new Rectangle(0, 0, _sourceImg.Width, _sourceImg.Height), GraphicsUnit.Pixel);
+                _sourceImg.Dispose();
+                if (Form2.ImageTypeName == ".jpg" || Form2.ImageTypeName == ".jpeg") 
+                {
+                    bitmap.Save(newPath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                }
+                if (Form2.ImageTypeName == ".png")
+                {
+                    bitmap.Save(newPath, System.Drawing.Imaging.ImageFormat.Png);
+                }
+                g.Dispose();
+                bitmap.Dispose();
+                //Log.ErrorLog(new Exception());
+                return true;
             }
-            else
+            catch (Exception ex)
             {
-                _newW = percentWidth;
-                _newH = (percentWidth / (double)_sourceImg.Width) * (double)_sourceImg.Height;
+                Log.ErrorLog(ex);
+                return false;
             }
-            Image bitmap = new Bitmap((int)_newW, (int)_newH);
-            Graphics g = Graphics.FromImage(bitmap);
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.High;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            g.Clear(Color.Transparent);
-            g.DrawImage(_sourceImg, new Rectangle(0, 0, (int)_newW, (int)_newH), new Rectangle(0, 0, _sourceImg.Width, _sourceImg.Height), GraphicsUnit.Pixel);
-            _sourceImg.Dispose();
-            g.Dispose();
-            bitmap.Save(newPath, System.Drawing.Imaging.ImageFormat.Jpeg);
-            bitmap.Dispose();
+        }
+    }
+
+    public class Log 
+    {
+        public static string LogPath = "C:\\ImagePath\\Log";
+
+        public static void ErrorLog(Exception ex) 
+        {
+            if (!Directory.Exists(LogPath))
+            {
+                Directory.CreateDirectory(LogPath);
+            }
+            var logName = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
+            var logUrl = Path.Combine(LogPath, logName);
+            if (!File.Exists(logUrl))
+            {
+                var a = File.Create(logUrl);
+                a.Flush();
+                a.Dispose();
+            }
+            using (StreamWriter streamWriter = File.AppendText(logUrl))
+            {
+                streamWriter.WriteLine("图片缩放异常" + ex.Message );
+                streamWriter.Flush();
+                streamWriter.Dispose();
+            }
         }
     }
 }

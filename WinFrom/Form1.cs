@@ -15,6 +15,7 @@ namespace WinFrom
     {
         public Form1()
         {
+            //var logName = DateTime.Now.ToString("yyyy-MM-dd") + ".txt";
             //DriveInfo[] driveInfos = DriveInfo.GetDrives();
 
             ////获取驱动盘符信息
@@ -64,7 +65,7 @@ namespace WinFrom
         private void button3_Click(object sender, EventArgs e)
         {
             MessageBox.Show("退出成功");
-            Application.Exit();
+            System.Environment.Exit(0);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
