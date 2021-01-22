@@ -4,6 +4,7 @@ using System.Text;
 
 namespace Course04.Model.IoSerzlia.JsonSerzlia
 {
+    [Serializable]
     public class JsonSeruzliaModle
     {
         public int A { get; set; }

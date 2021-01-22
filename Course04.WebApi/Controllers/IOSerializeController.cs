@@ -38,5 +38,19 @@ namespace Course04.WebApi.Controllers
         {
             OneISerliza.GetParentDirectory();
         }
+
+        [HttpGet]
+        public void ThreeDgExercise() 
+        {
+
+            XMLHelper.OneRunXmlDocment();
+            
+
+            //var a = System.IO.Directory.GetCurrentDirectory();
+            ////var a = HttpContext.;
+            //SerializeHelper.BinarySerialize();
+            //SerializeHelper.XmlSerialize();
+            //SerializeHelper.SoapSerialize();
+        }
     }
 }

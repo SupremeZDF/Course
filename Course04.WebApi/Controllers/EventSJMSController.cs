@@ -213,7 +213,7 @@ namespace Course04.WebApi.Controllers
                 };
                 koujPerform2.CurrentWenDu = 700;
                 koujPerform2.CurrentWenDu = 1201;
-                //EventTool.OnRun(koujPerform4);
+                EventTool.OnRun(koujPerform4);
                 //EventTool.TwoRun(koujPerform4);
             }
             catch (Exception ex)

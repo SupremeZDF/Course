@@ -4,6 +4,8 @@ using System.Text;
 using System.IO;
 using Course04.Model.IoSerzlia;
 using System.Linq;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace Course04.Model.IoSerzlia
 {
@@ -81,13 +83,13 @@ namespace Course04.Model.IoSerzlia
         /// 
         /// </summary>
         /// <returns></returns>
-        public static int ZZAction(int a,int b) 
+        public static int ZZAction(int a, int b)
         {
-            if (b == 0) 
+            if (b == 0)
             {
                 return a;
             }
-            return ZZAction(b,a%b);
+            return ZZAction(b, a % b);
         }
 
         /// <summary>
@@ -117,7 +119,7 @@ namespace Course04.Model.IoSerzlia
             treeNodes1 = model.Select(x => new TreeNodeTool() { Id = x.Id, NodeName = x.NodeName }).ToList();
             foreach (TreeNodeTool treeNode in treeNodes1)
             {
-                if (treeNodeModels.Where(x => x.ParentID == treeNode.Id).Count() > 0) 
+                if (treeNodeModels.Where(x => x.ParentID == treeNode.Id).Count() > 0)
                 {
                     treeNode.Childs = GetDejDian(treeNode, treeNodeModels);
                 }
@@ -125,13 +127,106 @@ namespace Course04.Model.IoSerzlia
             return treeNodes1;
         }
 
-        
+        public static int GetFx(int x)
+        {
+            if (x == 0)
+                return 0;
+            if (x == 1)
+                return 1;
+            return GetFx(x - 1) + GetFx(x - 2);
+        }
+
+       
 
         /// <summary>
         /// 
         /// </summary>
         public static void OneIOSerialize()
         {
+            {
+                string fileName = Path.Combine(logpath, "log.txt");
+                if (!File.Exists(fileName))
+                {
+                    //创建文件夹 -> 创建文件
+                    Directory.CreateDirectory(logpath);
+                    //打开文件流 创建文件并写入
+                    using (FileStream fileStream = File.Create(fileName))
+                    {
+                        string str = "dasdasda";
+                        byte[] vs = Encoding.Default.GetBytes(str);
+                        str = Encoding.Default.GetString(vs);
+                        fileStream.Write(vs, 0, vs.Length);
+                        fileStream.Flush();
+                    }
+                }
+                using (FileStream fileStream1 = File.OpenRead(fileName))  //分批读取
+                {
+                    var r = fileStream1.Position;
+                    fileStream1.Position = 0;
+                    StreamReader streamReader = new StreamReader(fileStream1);
+                    int readLength = 5;
+                    int length = 0;
+                    do
+                    {
+                        byte[] vs = new byte[readLength];
+                        // length 返回读取的长度
+                        length = fileStream1.Read(vs, 0, readLength);
+                        r = fileStream1.Position;
+                        var set = Encoding.UTF8.GetString(vs);
+                        for (var i = 0; i < length; i++)
+                        {
+                            var ii = vs[i].ToString();
+                        }
+                    } while (readLength == length);
+                    fileStream1.Flush();
+                }
+            }
+            {
+                using (FileStream fileStream1 = File.OpenRead(""))  //分批读取
+                {
+                    StreamReader streamReader = new StreamReader(fileStream1);
+                    int readLength = 1024 * 1024;
+                    int length = 0;
+                    do
+                    {
+                        byte[] vs = new byte[readLength];
+                        // length 返回读取的长度
+                        length = fileStream1.Read(vs, 0, readLength);
+                        var set = Encoding.UTF8.GetString(vs);
+                        for (var i = 0; i < length; i++)
+                        {
+                            var ii = vs[i].ToString();
+                        }
+                    } while (readLength == length);
+                    fileStream1.Flush();
+
+                    do
+                    {
+                        byte[] vs = new byte[readLength];
+                        length = fileStream1.Read(vs, 0, readLength);
+                        var set = Encoding.UTF8.GetString(vs);
+                        for (var i = 0; i < length; i++)
+                        {
+                            var ii = vs[i].ToString();
+                        }
+                    } while (readLength == length);
+
+                    //while (1>2) 
+                    //{
+                    
+                    //}
+                }
+            }
+            //文件帮助类 stram
+            {
+                //byte[] vs = new byte[] { };
+                //MemoryStream memoryStream = new MemoryStream(vs);
+                ////memoryStream.BeginRead
+                //Bitmap bitmap = new Bitmap(100,100);
+                //bitmap.Save("", ImageFormat.Jpeg);
+                //memoryStream.ToArray();
+            }
+
             //var a = logpath;
             {
                 //文件夹帮助类
@@ -167,6 +262,7 @@ namespace Course04.Model.IoSerzlia
                 string fileName = Path.Combine(logpath, "log.txt");
                 string fileNameCopy = Path.Combine(logpath, "LogCopy.txt");
                 string fileNameMove = Path.Combine(logpath, "LogMOve.txt");
+                MemoryStream memoryStream = new MemoryStream();
                 if (!File.Exists(fileName))
                 {
                     //创建文件夹 -> 创建文件
@@ -186,7 +282,7 @@ namespace Course04.Model.IoSerzlia
                         StreamWriter streamWriter = new StreamWriter(fileStream);
                         streamWriter.WriteLine("1312312");
                         streamWriter.Flush();
-                        
+
                     }
                     //
                     using (StreamWriter fileStream = File.AppendText(fileName))
@@ -214,26 +310,7 @@ namespace Course04.Model.IoSerzlia
                     byte[] bytecont = File.ReadAllBytes(fileName);
                     var strs = Encoding.UTF8.GetString(bytecont);
                     //Demo1
-                    {
-                        using (FileStream fileStream1 = File.OpenRead(fileName))  //分批读取
-                        {
-                            StreamReader streamReader = new StreamReader(fileStream1);
-                            int readLength = 5;
-                            int length = 0;
-                            do
-                            {
-                                byte[] vs = new byte[readLength];
-                                // length 返回读取的长度
-                                length = fileStream1.Read(vs, 0, readLength);
-                                var set = Encoding.UTF8.GetString(vs);
-                                for (var i = 0; i < length; i++)
-                                {
-                                    var ii = vs[i].ToString();
-                                }
-                            } while (readLength == length);
-                            fileStream1.Flush();
-                        }
-                    }
+
                     //Demo2
                     {
                         using (FileStream fileStream1 = File.OpenRead(fileName))  //分批读取
