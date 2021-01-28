@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,8 +28,8 @@ namespace Course05.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
 
-      
-
+            var a =100;
+            var b = a.ToString("00");
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
