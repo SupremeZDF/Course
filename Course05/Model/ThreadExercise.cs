@@ -12,6 +12,14 @@ namespace Course05.Model.Model
             //{
             //    Model.Name();
             //}
+
+            Action<string> action = new Action<string>(OneName);
+            action.BeginInvoke("", null, null);
+        }
+
+        public static void OneName(string Name) 
+        {
+        
         }
     }
 }

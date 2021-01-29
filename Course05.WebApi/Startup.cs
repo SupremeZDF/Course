@@ -48,6 +48,7 @@ namespace Course05.WebApi
                 c.IncludeXmlComments(cc);
                 var d = Directory.GetDirectories("./");
                 var dd = Directory.GetDirectories("/");
+                //var a = 1_100_100;
             });
         }
 
@@ -68,6 +69,7 @@ namespace Course05.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "sadads");
             });
 
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

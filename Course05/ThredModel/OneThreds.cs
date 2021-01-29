@@ -18,6 +18,34 @@ namespace Course05.Model.ThredModel
         public static void OneRunThread() 
         {
             //Task
+            Name();
+            Name();
+            Name();
+        }
+
+        public static void Name() 
+        {
+            var o = 0;
+            for (var i = 0; i < 1_000_000_00; i++) 
+            {
+                o += 1;
+            }
+            Console.WriteLine("哈哈");
+        }
+
+        public static void TwoRunThread()
+        {
+            //Task
+            Action action = new Action(Name);
+            Task.Factory.StartNew(()=> { Name(); });
+            Task.Factory.StartNew(() => { Name(); });
+            Task.Factory.StartNew(() => { Name(); });
+            AsyncCallback asyncCallback = s => Console.WriteLine("sss");
+            var a = action.BeginInvoke(null, null);
+            Func<string, string> func = null;
+            var b = func.BeginInvoke("",null,null);
+            //action.BeginInvoke(null, null);
+            Task.WaitAll();
         }
     }
 }
