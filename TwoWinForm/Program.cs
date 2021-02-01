@@ -11,15 +11,15 @@ namespace TwoWinForm
     static class Program
     {
 
-        [DllImport("kernel32.dll")]
-        public static extern bool AllocConsole();
-        [DllImport("kernel32.dll")]
-        public static extern bool FreeConsole();
+        //[DllImport("kernel32.dll")]
+        //public static extern bool AllocConsole();
+        //[DllImport("kernel32.dll")]
+        //public static extern bool FreeConsole();
 
         /// <summary>
         /// 应用程序的主入口点。
         /// </summary>
-        [STAThread]
+        //[STAThread]
         static void Main()
         {
             //Process p = new Process();
@@ -31,10 +31,10 @@ namespace TwoWinForm
             //p.StartInfo.CreateNoWindow = false;
 
             // 允许调用控制台输出
-            AllocConsole();
+            //AllocConsole();
 
 
-            Console.WriteLine("sdasdasda");
+            //Console.WriteLine("sdasdasda");
             //p.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

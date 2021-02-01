@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -46,6 +47,33 @@ namespace Course05.Model.ThredModel
             var b = func.BeginInvoke("",null,null);
             //action.BeginInvoke(null, null);
             Task.WaitAll();
+        }
+
+        /// <summary>
+        /// 执行线程
+        /// </summary>
+        public static void ThreeRunThread() 
+        {
+            Console.WriteLine($"One 主 线程 Start:{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+
+            ThreadStart thread = () => 
+            {
+                Thread.Sleep(5000);
+                Console.WriteLine("1");
+                
+                Thread.Sleep(3000);
+
+                Console.WriteLine($"One 后台 线程 Start:{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            };
+
+            Thread thread1 = new Thread(thread);
+
+            thread1.IsBackground = false;
+
+            thread1.Start();
+
+
+            Console.WriteLine($"One 主 线程 Start:{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
     }
 }

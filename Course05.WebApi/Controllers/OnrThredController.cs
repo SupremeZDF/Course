@@ -36,5 +36,11 @@ namespace Course05.WebApi.Controllers
         {
             OneThreds.TwoRunThread();
         }
+
+        [HttpGet]
+        public void ThreeRunThread() 
+        {
+            OneThreds.ThreeRunThread();
+        }
     }
 }
