@@ -51,5 +51,10 @@ namespace TwoWinForm
         {
             ThreadExercise.ThreeExercise();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ThreadExercise.FourExercise();
+        }
     }
 }
