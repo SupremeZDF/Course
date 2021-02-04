@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using TwoWinForm.OneModel;
 using System.Diagnostics;
+using System.Data;
 
 namespace TwoWinForm.Model
 {
@@ -38,6 +39,17 @@ namespace TwoWinForm.Model
             //action.BeginInvoke();
 
             Func<int> func = () => DateTime.Now.Hour;
+
+            {
+                Func<int, int> func1 = c => { return DateTime.Now.Year; };
+
+                var s = func1.BeginInvoke(1,sss=> { },"123");
+
+                var ss = func1.EndInvoke(s);  
+
+                //Action<int> action1 = delegate (int a) { Console.WriteLine(""); };
+            }
+
 
             var iasy = func.BeginInvoke(s =>
             {
@@ -109,7 +121,7 @@ namespace TwoWinForm.Model
         /// <summary>
         /// 
         /// </summary>
-        public static void FourExercise() 
+        public static void FourExercise()
         {
             Console.WriteLine($"One 主 线程 Start:{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
@@ -132,12 +144,13 @@ namespace TwoWinForm.Model
             Console.WriteLine($"One 主 线程 End:{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
         }
 
-        private static void ThreadCallBacak(ThreadStart threadStart, Action action) 
+        private static void ThreadCallBacak(ThreadStart threadStart, Action action)
         {
             //Func<Model, ThreadExercise> func = x => new ThreadExercise { model = x.GetType() }; 
             //var r = func.Invoke(null);
 
-            ThreadStart thread = new ThreadStart(() => {
+            ThreadStart thread = new ThreadStart(() =>
+            {
                 threadStart.Invoke();
                 action.Invoke();
             });
@@ -157,10 +170,10 @@ namespace TwoWinForm.Model
         /// <typeparam name="T"></typeparam>
         /// <param name="func"></param>
         /// <returns></returns>
-        public static T ThreadWithReturn<T>(Func<T> func) 
+        public static T ThreadWithReturn<T>(Func<T> func)
         {
             var t = default(T);
-            ThreadStart threadStart = new ThreadStart(()=> 
+            ThreadStart threadStart = new ThreadStart(() =>
             {
                 t = func.Invoke();
             });
@@ -184,7 +197,7 @@ namespace TwoWinForm.Model
             });
             Thread thread = new Thread(threadStart);
             //返回结果 交给 外面等待
-            return new Func<T>(()=> 
+            return new Func<T>(() =>
             {
                 thread.Join();
                 return t;
@@ -193,7 +206,7 @@ namespace TwoWinForm.Model
         /// <summary>
         /// 线程完成回调 线程异步 不阻塞 有返回值
         /// </summary>
-        public static void FiveExercise() 
+        public static void FiveExercise()
         {
 
             //死锁
@@ -205,16 +218,80 @@ namespace TwoWinForm.Model
                 //设置线程池最大的线程数量
                 ThreadPool.SetMaxThreads(8, 8);
 
-                for (var i = 0; i < 10; i++) 
+                //var k = 0;
+
+                for (var i = 0; i < 15; i++)
                 {
-                     
+                    var k = i;
+
+                    if (i > 7)
+                    {
+                        //不受  线程池 数量限制  ，但是会占用线程池数量
+                        new Thread(()=> 
+                        {
+                            Debug.WriteLine($" 线程 线程_{k} Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                            manualResetEvent.WaitOne();
+                        }).Start();
+                    }
+                    else {
+                        ThreadPool.QueueUserWorkItem(c =>
+                        {
+                            Debug.WriteLine($" 线程池 线程_{k} Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                            //等待
+                            manualResetEvent.WaitOne();
+                        });
+                    }
                 }
 
-                if (manualResetEvent.WaitOne()) 
+                if (manualResetEvent.WaitOne())
                 {
-                    Debug.WriteLine("");
+                    Debug.WriteLine($"One 线程池 线程 End 结束了{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
             }
+
+            {
+
+                //设置线程池数量 
+                ThreadPool.SetMaxThreads(10, 12);
+
+                Action action = () =>
+                {
+                    Debug.WriteLine($" 线程池 线程 Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    Thread.Sleep(3000);
+                };
+
+                //action.BeginInvoke(null,null);
+
+
+                Thread thread = new Thread(()=> 
+                {
+                    action.Invoke();
+                });
+
+                thread.Start();
+
+                //action.EndInvoke(null);
+
+                //ThreadPool.QueueUserWorkItem((c)=> 
+                //{
+                //    Debug.WriteLine($" 线程池 线程 Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                //    Thread.Sleep(3000);
+                //});
+
+                Thread.Sleep(1000);
+                ThreadPool.GetAvailableThreads(out int workThreadss, out int conplatePosrtThreadss);
+                Debug.WriteLine($" 线程池 线程数  {workThreadss} 线程 I/O 数量  {conplatePosrtThreadss} ");
+
+                //Thread.Sleep(3000);
+                ThreadPool.GetAvailableThreads(out int workThreads,out int conplatePosrtThreads);
+                Debug.WriteLine($" 线程池 线程数  {workThreads} 线程 I/O 数量  {conplatePosrtThreads} ");
+
+                //DataRow a = new DataRow();
+                //a.RowState
+            }
+
+
+           
 
 
             //线程池 线程等待 ManualResetEvent（锁、线程阻塞）
@@ -235,7 +312,7 @@ namespace TwoWinForm.Model
                 //线程池任务等待
 
                 ThreadPool.QueueUserWorkItem(waitCallback, "昔日");
-                
+
                 manualResetEvent.WaitOne(); //等待线程池 线程任务
                 Console.WriteLine("任务已经完成了 。。。。。。");
             }
@@ -277,7 +354,7 @@ namespace TwoWinForm.Model
         /// <summary>
         /// 线程池
         /// </summary>
-        public static void SixExercise() 
+        public static void SixExercise()
         {
             //线程池 
             {
@@ -298,7 +375,7 @@ namespace TwoWinForm.Model
                 ManualResetEvent manualResetEvent = new ManualResetEvent(false);
 
                 ManualResetEvent manualResetEvent1 = new ManualResetEvent(false);
-                
+
                 //线程池委托
                 WaitCallback waitCallback = (c) =>
                 {
@@ -328,7 +405,7 @@ namespace TwoWinForm.Model
                 Debug.WriteLine("DO SOME TINGING.......");
 
                 //线程池等待
-                WaitHandle.WaitAll(new ManualResetEvent []{ manualResetEvent, manualResetEvent1 } );
+                WaitHandle.WaitAll(new ManualResetEvent[] { manualResetEvent, manualResetEvent1 });
 
                 Debug.WriteLine("任务已经完成了 。。。。。。");
 

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Course05.Model.ICSharpCodes.SharpZip;
+using Course05.Model.Model;
+using System.Threading;
 
 namespace Course05.WebApi.Controllers
 {
@@ -17,6 +19,21 @@ namespace Course05.WebApi.Controllers
         {
             OneICSharpCode.CreateFloder("");
             OneICSharpCode.copyZipFile();
+        }
+
+        [HttpGet]
+        public void TwoThreadExercese()
+        {
+
+            ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+
+            ThreadPool.GetAvailableThreads(out int worksThreads, out int complatePortThreads);
+            Console.WriteLine($"线程数量worksThreads——{worksThreads}  - complatePortThreads———{complatePortThreads}");
+            Console.WriteLine($"当前线程ID——{Thread.CurrentThread.ManagedThreadId.ToString("00")}  ");
+
+            manualResetEvent.WaitOne();
+
+            ThreadExercise.TwoThreadExerce();
         }
 
         [HttpPost]

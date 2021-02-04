@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace TwoWinForm
 {
@@ -22,6 +23,14 @@ namespace TwoWinForm
         //[STAThread]
         static void Main()
         {
+
+            //ThreadPool.SetMaxThreads(8,8);
+
+
+            //ThreadPool.GetAvailableThreads(out int workThreads, out int complatePortThreads);
+
+            //Debug.WriteLine($"线程池线程数量{workThreads} ___ {complatePortThreads}");
+
             //Process p = new Process();
             //string appPath = Application.StartupPath + @"aa.exe";//
             //p.StartInfo.FileName = appPath;

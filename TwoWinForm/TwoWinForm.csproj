@@ -79,6 +79,7 @@
     <Compile Include="Model\Model.cs" />
     <Compile Include="Model\OneInterface.cs" />
     <Compile Include="Model\ThreadExercise.cs" />
+    <Compile Include="Model\TwoThreadExercise.cs" />
     <Compile Include="OneModel\Ext_Console.cs" />
     <Compile Include="OneModel\OneModel.cs" />
     <Compile Include="Program.cs" />

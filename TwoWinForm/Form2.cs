@@ -23,5 +23,19 @@ namespace TwoWinForm
         {
             ThreadExercise.SixExercise();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ThreadExercise.FiveExercise();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ThreadPool.SetMaxThreads(10, 10);
+            ThreadPool.GetAvailableThreads(out int maxWorkThreads, out int completionPortThreads);
+            Console.WriteLine($"线程池中辅助线程的最大数目:{maxWorkThreads}, 线程池中异步 I/O 线程的最大数目{completionPortThreads}");
+
+            TwoThreadExercise.OneTaskExercse();
+        }
     }
 }

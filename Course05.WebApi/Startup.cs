@@ -27,6 +27,7 @@ namespace Course05.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            ThreadPool.SetMaxThreads(20, 20);
 
             var a =100;
             var b = a.ToString("00");

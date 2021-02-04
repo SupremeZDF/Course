@@ -1,3 +1,26 @@
 ﻿@{
     Layout = "_Layout";
 }
+
+<ul>
+
+
+    <%
+
+    var i = 0;
+
+    <%foreach (DataRow dr in cmd.dtmodule.Select("parentnode='126004'", "nodelorder asc"))
+    { %>
+
+    if(i == 0){
+    
+    }
+    <li class="liNow"><%=dr["nodeName"]%> </li>
+
+    <%} %>
+
+
+    %>
+
+
+</ul>
