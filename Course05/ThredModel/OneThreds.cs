@@ -17,7 +17,7 @@ namespace Course05.Model.ThredModel
 
         public static void OneRunThread() 
         {
-            Task
+            //Task
         }
     }
 }

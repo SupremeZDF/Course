@@ -26,8 +26,11 @@ namespace Course05.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var str = "dasda:dfasdasd";
 
-      
+            var aa = str.IndexOf(":");
+
+            var bb = str.Substring(aa + 1);
 
             services.AddControllers();
 
@@ -39,6 +42,7 @@ namespace Course05.WebApi
                     Title = "webapi",
                     TermsOfService = null,
                     Description = "webapiÎÄµµ"
+
                 });
                 //var con=new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("")
                 var a = Directory.GetCurrentDirectory();
@@ -46,7 +50,7 @@ namespace Course05.WebApi
                 var cc = Path.Combine(b, "Course05.WebApi.xml");
                 c.IncludeXmlComments(cc);
                 var d = Directory.GetDirectories("./");
-                var dd = Directory.GetDirectories("/");
+                var dd = Directory.GetDirectories("");
             });
         }
 
