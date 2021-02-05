@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,12 +27,10 @@ namespace Course05.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var str = "dasda:dfasdasd";
+            ThreadPool.SetMaxThreads(20, 20);
 
-            var aa = str.IndexOf(":");
-
-            var bb = str.Substring(aa + 1);
-
+            var a =100;
+            var b = a.ToString("00");
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
@@ -50,7 +49,8 @@ namespace Course05.WebApi
                 var cc = Path.Combine(b, "Course05.WebApi.xml");
                 c.IncludeXmlComments(cc);
                 var d = Directory.GetDirectories("./");
-                var dd = Directory.GetDirectories("");
+                var dd = Directory.GetDirectories("/");
+                //var a = 1_100_100;
             });
         }
 
@@ -71,6 +71,7 @@ namespace Course05.WebApi
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "sadads");
             });
 
+            
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

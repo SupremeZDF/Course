@@ -18,7 +18,7 @@ namespace Course04.Model.ExperssionExercise
             foreach (PropertyInfo into in typeof(TOut).GetProperties()) 
             {
                 var item = typeof(TIn).GetProperty(into.Name);
-                if (typeof(TIn).GetProperty(into.Name) == null) 
+                if (item == null) 
                 {
                     var propertyInfo = into.GetCustomAttributes(typeof(ExpressGenericFuncAttrbuteTool)).FirstOrDefault() as ExpressGenericFuncAttrbuteTool;
                     //var propertyInfo = propertyInfos.Where(x => (x.GetCustomAttribute(typeof(ExpressGenericFuncAttrbuteTool), true) as ExpressGenericFuncAttrbuteTool).PropertyConvertName == into.Name).FirstOrDefault();
