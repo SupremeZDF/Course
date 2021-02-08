@@ -41,6 +41,7 @@ namespace Course05.WebApi
                     Title = "webapi",
                     TermsOfService = null,
                     Description = "webapiÎÄµµ"
+
                 });
                 //var con=new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("")
                 var a = Directory.GetCurrentDirectory();
