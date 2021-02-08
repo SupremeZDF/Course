@@ -43,9 +43,9 @@ namespace TwoWinForm.Model
             {
                 Func<int, int> func1 = c => { return DateTime.Now.Year; };
 
-                var s = func1.BeginInvoke(1,sss=> { },"123");
+                var s = func1.BeginInvoke(1, sss => { }, "123");
 
-                var ss = func1.EndInvoke(s);  
+                var ss = func1.EndInvoke(s);
 
                 //Action<int> action1 = delegate (int a) { Console.WriteLine(""); };
             }
@@ -196,6 +196,8 @@ namespace TwoWinForm.Model
                 t = func.Invoke();
             });
             Thread thread = new Thread(threadStart);
+            thread.Start();
+
             //返回结果 交给 外面等待
             return new Func<T>(() =>
             {
@@ -227,13 +229,14 @@ namespace TwoWinForm.Model
                     if (i > 7)
                     {
                         //不受  线程池 数量限制  ，但是会占用线程池数量
-                        new Thread(()=> 
+                        new Thread(() =>
                         {
                             Debug.WriteLine($" 线程 线程_{k} Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                             manualResetEvent.WaitOne();
                         }).Start();
                     }
-                    else {
+                    else
+                    {
                         ThreadPool.QueueUserWorkItem(c =>
                         {
                             Debug.WriteLine($" 线程池 线程_{k} Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
@@ -263,7 +266,7 @@ namespace TwoWinForm.Model
                 //action.BeginInvoke(null,null);
 
 
-                Thread thread = new Thread(()=> 
+                Thread thread = new Thread(() =>
                 {
                     action.Invoke();
                 });
@@ -283,7 +286,7 @@ namespace TwoWinForm.Model
                 Debug.WriteLine($" 线程池 线程数  {workThreadss} 线程 I/O 数量  {conplatePosrtThreadss} ");
 
                 //Thread.Sleep(3000);
-                ThreadPool.GetAvailableThreads(out int workThreads,out int conplatePosrtThreads);
+                ThreadPool.GetAvailableThreads(out int workThreads, out int conplatePosrtThreads);
                 Debug.WriteLine($" 线程池 线程数  {workThreads} 线程 I/O 数量  {conplatePosrtThreads} ");
 
                 //DataRow a = new DataRow();
@@ -291,7 +294,7 @@ namespace TwoWinForm.Model
             }
 
 
-           
+
 
 
             //线程池 线程等待 ManualResetEvent（锁、线程阻塞）

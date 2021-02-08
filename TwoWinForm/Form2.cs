@@ -42,5 +42,10 @@ namespace TwoWinForm
         {
             TwoThreadExercise.OneTaskExercse();
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            TwoThreadExercise.ThreeTaskExercise();
+        }
     }
 }

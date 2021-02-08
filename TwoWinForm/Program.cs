@@ -9,6 +9,14 @@ using System.Threading;
 
 namespace TwoWinForm
 {
+
+    public class Student 
+    {
+        public int ID { get; set; }
+
+        public string Name { get; set; }
+    }
+
     static class Program
     {
 
@@ -23,6 +31,19 @@ namespace TwoWinForm
         //[STAThread]
         static void Main()
         {
+            //Student student = new Student() { ID = 1, Name = "12" };
+
+            //object[] vs = new object[] { student.ID, student.Name };
+
+            //var d = vs.GetType();
+
+            //var s = d.GetProperties();
+
+            //List<object> list = new List<object>() { };
+
+            //list.Add(student.ID);
+
+            //list.Add(student.Name);
 
             //ThreadPool.SetMaxThreads(8,8);
 
@@ -47,7 +68,8 @@ namespace TwoWinForm
             //p.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form2());
+            Application.Run(new Form3());
+
 
             // 释放
             //FreeConsole();
