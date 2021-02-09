@@ -91,8 +91,7 @@ namespace TwoWinForm.Model
                             }
                             catch (Exception ex)
                             {
-
-                                //throw;
+                                
                             }
                         }));
                     }
@@ -107,7 +106,7 @@ namespace TwoWinForm.Model
                 // 获取异常信息 还需要通知别的线程
                 catch (AggregateException agrex)
                 {
-                    foreach (var i in agrex.InnerExceptions) 
+                    foreach (var i in agrex.InnerExceptions)
                     {
                         Debug.WriteLine(i.Message);
                     }
@@ -132,6 +131,22 @@ namespace TwoWinForm.Model
             //2 线程取消
             {
 
+                //Thread thread = new Thread(() =>
+                //{
+                //    try
+                //    {
+                //        Debug.WriteLine("1231321");
+                //        Thread.Sleep(1000);
+                //        Debug.WriteLine("1231321");
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        Debug.WriteLine(ex.Message);
+                //    }
+                //});
+                //thread.Start();
+
+                //thread.Abort();  //
 
                 //准备 cts 2 try - catch -cancel  3 action 要随时判断 IsCancellationRequested 
                 //尽快停止 肯定有延迟  判断环节取消
@@ -142,19 +157,19 @@ namespace TwoWinForm.Model
                     //多线程并发任务  ， 某个失败后 希望通知别的线程  都停下来  ， how？
                     //  Thread.Abort 终止线程 ： 向当前线程 抛一个异常 然后 终结任务
                     //线程安全
-                    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                    //CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
                     //传达取消请求。
-                    cancellationTokenSource.Cancel();
+                    //cancellationTokenSource.Cancel();
 
-                    var cancelBool = cancellationTokenSource.IsCancellationRequested;
+                    //var cancelBool = cancellationTokenSource.IsCancellationRequested;
 
-                    cancellationTokenSource.Cancel(false);
+                    //cancellationTokenSource.Cancel(false);
 
-                    var cancelTrue = cancellationTokenSource.IsCancellationRequested;
+                    //var cancelTrue = cancellationTokenSource.IsCancellationRequested;
 
 
-                    CancellationToken cancellationToken = cancellationTokenSource.Token;
+                    //CancellationToken cancellationToken = cancellationTokenSource.Token;
 
                     //CancellationToken.None
 
@@ -162,49 +177,108 @@ namespace TwoWinForm.Model
 
                     Debug.WriteLine($"Start CurrThreadID {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
 
-                    for (int i = 0; i < 100; i++)
+
+                    CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+                 
+                    for (int i = 0; i < 50; i++)
                     {
                         string Name = $"Name _{i}";
                         tasks.Add(Task.Run(() =>
                         {
-                            //try
-                            //{
-                            if (Name == "Name _11")
+
+                            try
                             {
-                                throw new Exception("111111");
-                            }
+                                Thread.Sleep(new Random().Next(500, 1000));
+                                if (Name == "Name _11")
+                                {
+                                    throw new Exception("111111");
+                                }
 
-                            if (Name == "Name _33")
+                                if (Name == "Name _33")
+                                {
+                                    throw new Exception("3333333");
+                                }
+
+                                if (Name == "Name _55")
+                                {
+                                    throw new Exception("555555");
+                                }
+
+                                if (cancellationTokenSource.IsCancellationRequested == true) 
+                                {
+                                    Debug.WriteLine("任务已被取消");
+                                    return;
+                                }
+                                Console.WriteLine($"this is Name {Name} ,This is CurrThreadid  {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                            }
+                            catch (Exception ex)
                             {
-                                throw new Exception("3333333");
+                                cancellationTokenSource.Cancel();
                             }
-
-                            if (Name == "Name _55")
-                            {
-                                throw new Exception("555555");
-                            }
-
-                            Thread.Sleep(1000);
-                            Console.WriteLine($"this is Name {Name} ,This is CurrThreadid  {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                            //}
-                            //catch (Exception)
-                            //{
-
-                            //    throw;
-                            //}
-                        }));
+                            //CancellationTokenSource 如果 cancel() 以后，还没有启动后的线程 就不会启动了 ，也就是抛异常 （已取消一个任务）
+                            //cancellationTokenSource.Token.ThrowIfCancellationRequested
+                        }, cancellationTokenSource.Token));
                     }
 
-                    Task.WaitAll();  //等待结果 并获取线程异常 
+                    Task.WaitAll(tasks.ToArray());  //等待结果 并获取线程异常  
 
 
                     Debug.WriteLine($"End CurrThreadID {Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                 }
                 catch (AggregateException agrex)
                 {
-
+                    foreach (var i in agrex.InnerExceptions) 
+                    {
+                        Debug.WriteLine(i.Message) ;
+                    }
                 }
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void ThreeThreadExercise() 
+        {
+
+            //var i = 1;
+            //var u = i++;
+            //var j = i;
+            //j = ++i;
+
+            //for (var i = 0; i < 100; i++)
+            //{
+    
+            //}
+
+            Debug.WriteLine("Start");
+
+            //1 临时变量
+            {
+                //临时变量问题  线程是非阻塞的  延迟启动的 ， i 已经是 5 了 
+                for (var i = 0; i < 100; i++)
+                {
+                    //Thread.Sleep(100);
+                    Task.Run(() =>
+                    {
+                        lock()
+                        Debug.WriteLine($"{}");
+                        Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                    });
+                }
+            }
+
+            // 2  线程安全  ( lock ) : 如果你代码 在进程中 被多个线程 同时运行 如果每次运行的结果 跟 单线程的结果一致  那么 线程是安全的  
+            //    线程 安全问题 一般都是有 全局变量 共享变量  静态变量  硬盘文件 数据库得数据  只要多线程访问和修改
+
+            //  多个线程同时进行操作 导致进行重复操作
+            {
+                
+            }
+
+            Debug.WriteLine("End");
+        }
+
+        private static object DD { get; set; }
     }
 }
