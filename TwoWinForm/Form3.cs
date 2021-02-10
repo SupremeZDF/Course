@@ -33,5 +33,16 @@ namespace TwoWinForm
         {
             ThreThreadExercise.ThreeThreadExercise();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            for (var i = 0; i < 3; i++) 
+            {
+                Task.Run(()=> 
+                {
+                    ThreThreadExercise threThread = new ThreThreadExercise();
+                });
+            }
+        }
     }
 }

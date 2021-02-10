@@ -261,9 +261,12 @@ namespace TwoWinForm.Model
                     //Thread.Sleep(100);
                     Task.Run(() =>
                     {
-                        lock()
-                        Debug.WriteLine($"{}");
-                        Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        lock (DD)
+                        {
+                            
+                            Debug.WriteLine($"");
+                            Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        }
                     });
                 }
             }
@@ -279,6 +282,20 @@ namespace TwoWinForm.Model
             Debug.WriteLine("End");
         }
 
+
+        public void OneName(int i) 
+        {
+            lock (DD) 
+            {
+                Thread.Sleep(4000);
+
+                Debug.WriteLine($"{i}____{DD.GetHashCode()}");
+            }
+        }
+
+
         private static object DD { get; set; }
+
+        public static int DS { get; set; }
     }
 }
