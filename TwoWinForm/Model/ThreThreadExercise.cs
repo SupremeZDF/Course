@@ -156,6 +156,8 @@ namespace TwoWinForm.Model
 
                     CancellationToken cancellationToken = cancellationTokenSource.Token;
 
+                    
+
                     //CancellationToken.None
 
                     List<Task> tasks = new List<Task>();
