@@ -165,7 +165,6 @@ namespace TwoWinForm.Model
                     //var cancelBool = cancellationTokenSource.IsCancellationRequested;
 
                     //cancellationTokenSource.Cancel(false);
-
                     //var cancelTrue = cancellationTokenSource.IsCancellationRequested;
 
 
