@@ -91,7 +91,7 @@ namespace TwoWinForm.Model
                             }
                             catch (Exception ex)
                             {
-                                
+
                             }
                         }));
                     }
@@ -170,7 +170,7 @@ namespace TwoWinForm.Model
 
                     //CancellationToken cancellationToken = cancellationTokenSource.Token;
 
-                    
+
 
                     //CancellationToken.None
 
@@ -180,7 +180,7 @@ namespace TwoWinForm.Model
 
 
                     CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
-                 
+
                     for (int i = 0; i < 50; i++)
                     {
                         string Name = $"Name _{i}";
@@ -205,7 +205,7 @@ namespace TwoWinForm.Model
                                     throw new Exception("555555");
                                 }
 
-                                if (cancellationTokenSource.IsCancellationRequested == true) 
+                                if (cancellationTokenSource.IsCancellationRequested == true)
                                 {
                                     Debug.WriteLine("任务已被取消");
                                     return;
@@ -214,6 +214,7 @@ namespace TwoWinForm.Model
                             }
                             catch (Exception ex)
                             {
+                                //取消请求
                                 cancellationTokenSource.Cancel();
                             }
                             //CancellationTokenSource 如果 cancel() 以后，还没有启动后的线程 就不会启动了 ，也就是抛异常 （已取消一个任务）
@@ -228,9 +229,9 @@ namespace TwoWinForm.Model
                 }
                 catch (AggregateException agrex)
                 {
-                    foreach (var i in agrex.InnerExceptions) 
+                    foreach (var i in agrex.InnerExceptions)
                     {
-                        Debug.WriteLine(i.Message) ;
+                        Debug.WriteLine(i.Message);
                     }
                 }
             }
@@ -239,7 +240,7 @@ namespace TwoWinForm.Model
         /// <summary>
         /// 
         /// </summary>
-        public static void ThreeThreadExercise() 
+        public static void ThreeThreadExercise()
         {
 
             //var i = 1;
@@ -249,7 +250,7 @@ namespace TwoWinForm.Model
 
             //for (var i = 0; i < 100; i++)
             //{
-    
+
             //}
 
             Debug.WriteLine("Start");
@@ -262,12 +263,12 @@ namespace TwoWinForm.Model
                     //Thread.Sleep(100);
                     Task.Run(() =>
                     {
-                        lock (DD)
-                        {
-                            
-                            Debug.WriteLine($"");
-                            Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                        }
+                        //lock (DD)
+                        //{
+
+                        Debug.WriteLine($"");
+                        Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        //}
                     });
                 }
             }
@@ -277,25 +278,44 @@ namespace TwoWinForm.Model
 
             //  多个线程同时进行操作 导致进行重复操作
             {
-                
+
             }
 
             Debug.WriteLine("End");
         }
 
 
-        public void OneName(int i) 
+        public void OneName()
         {
-            lock (DD) 
-            {
-                Thread.Sleep(4000);
 
-                Debug.WriteLine($"{i}____{DD.GetHashCode()}");
+            for (var j = 0; j < 5; j++)
+            {
+                lock (DD)
+                {
+                    Thread.Sleep(4000);
+
+                    Debug.WriteLine($"{j}____{DD?.GetHashCode()}");
+                }
+
+            }
+        }
+
+        public void TwoName()
+        {
+
+            for (var j = 0; j < 5; j++)
+            {
+                lock (DD)
+                {
+                    Thread.Sleep(4000);
+
+                    Debug.WriteLine($"TwoName_{j}____{DD?.GetHashCode()}");
+                }
             }
         }
 
 
-        private static object DD { get; set; }
+        private  object DD = new object();
 
         public static int DS { get; set; }
     }

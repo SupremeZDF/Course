@@ -36,11 +36,17 @@ namespace TwoWinForm
 
         private void button4_Click(object sender, EventArgs e)
         {
-            for (var i = 0; i < 3; i++) 
+            for (var i = 0; i < 1; i++) 
             {
                 Task.Run(()=> 
                 {
                     ThreThreadExercise threThread = new ThreThreadExercise();
+                    threThread.OneName();
+                });
+                Task.Run(() =>
+                {
+                    ThreThreadExercise threThread = new ThreThreadExercise();
+                    threThread.TwoName();
                 });
             }
         }
