@@ -173,12 +173,19 @@ namespace TwoWinForm.Model
         public static T ThreadWithReturn<T>(Func<T> func)
         {
             var t = default(T);
-            ThreadStart threadStart = new ThreadStart(() =>
+            //ThreadStart threadStart = new ThreadStart(() =>
+            //{
+            //    t = func.Invoke();
+            //});
+            Thread thread = new Thread(() =>
             {
                 t = func.Invoke();
             });
-            Thread thread = new Thread(threadStart);
-            thread.Join();
+
+            thread.Start();
+
+            //thread.Join();
+            Func<T> ts = () => { thread.Join(); return t; };
             return t;
         }
 
@@ -191,11 +198,14 @@ namespace TwoWinForm.Model
         public static Func<T> ThreadWithReturnGZ<T>(Func<T> func)
         {
             var t = default(T);
-            ThreadStart threadStart = new ThreadStart(() =>
+            //ThreadStart threadStart = new ThreadStart(() =>
+            //{
+            //    t = func.Invoke();
+            //});
+            Thread thread = new Thread(() =>
             {
                 t = func.Invoke();
             });
-            Thread thread = new Thread(threadStart);
             thread.Start();
 
             //返回结果 交给 外面等待
@@ -242,6 +252,7 @@ namespace TwoWinForm.Model
                             Debug.WriteLine($" 线程池 线程_{k} Start等待{Thread.CurrentThread.GetHashCode()}_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
                             //等待
                             manualResetEvent.WaitOne();
+                            manualResetEvent.Set();
                         });
                     }
                 }

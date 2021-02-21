@@ -50,5 +50,21 @@ namespace TwoWinForm
                 });
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ThreThreadExercise.OneExcptionRun();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ThreThreadExercise.TwoLockRun();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ThreThreadExercise threThreadExercise= new ThreThreadExercise();
+            threThreadExercise.DoTest();
+        }
     }
 }
