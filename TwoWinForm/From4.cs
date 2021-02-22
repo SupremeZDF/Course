@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TwoWinForm.Model;
 
 namespace TwoWinForm
 {
@@ -19,7 +20,8 @@ namespace TwoWinForm
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            FourThreadExercise.OneRunThread();
+            //this.Invoke()
         }
     }
 }

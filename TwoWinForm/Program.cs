@@ -68,7 +68,7 @@ namespace TwoWinForm
             //p.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form3());
+            Application.Run(new From4());
 
 
             // 释放
