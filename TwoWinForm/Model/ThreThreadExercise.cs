@@ -263,12 +263,15 @@ namespace TwoWinForm.Model
                     //Thread.Sleep(100);
                     Task.Run(() =>
                     {
-                        //lock (DD)
-                        //{
+                        //ThreThreadExercise threThreadExercise = new ThreThreadExercise();
+                        //threThreadExercise.OneExercise();
+                        //OneExercis(); ;
 
-                        Debug.WriteLine($"");
-                        Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
-                        //}
+                        lock (DD)
+                        {
+                            Debug.WriteLine($"");
+                            Debug.WriteLine($"线程变量的问题{i}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+                        }
                     });
                 }
             }
@@ -282,6 +285,19 @@ namespace TwoWinForm.Model
             }
 
             Debug.WriteLine("End");
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void OneExercise()
+        {
+            lock (DD)
+            {
+                Thread.Sleep(1000);
+                Debug.WriteLine($"");
+                Debug.WriteLine($"线程变量的问题{1}  ___ CurrThread_{Thread.CurrentThread.ManagedThreadId.ToString("00")}");
+            }
         }
 
 
@@ -303,8 +319,13 @@ namespace TwoWinForm.Model
         public void TwoName()
         {
 
+            //lock 
+            //1 引用类型
+            //2 语法糖 Monitor.Enter 占据一个引用  别的线程只能等着
+            //引用类型
             for (var j = 0; j < 5; j++)
             {
+                // 任何时刻 只能有一个线程操作 
                 lock (DD)
                 {
                     Thread.Sleep(4000);
@@ -314,9 +335,267 @@ namespace TwoWinForm.Model
             }
         }
 
+        public static void OneExcptionRun()
+        {
+            try
+            {
+                //Task.Run(() =>
+                //{
+                Thread thread = new Thread(() =>
+                {
+                    //try
+                    //{
+                    Debug.WriteLine("11111");
+                    Thread.Sleep(4000);
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    var e = ex.Message;
+                    //    throw;
+                    //}
+                });
 
-        private  object DD = new object();
+                //ThreadPool.SetMi nThreads
+
+                thread.Start();
+                Thread.Sleep(100);
+                thread.Abort();
+
+                //TaskFactory taskFactory = new TaskFactory();
+                //ManualResetEvent manualResetEvent = new ManualResetEvent(false);
+                //manualResetEvent.Set();
+                //});
+            }
+            catch (Exception ex)
+            {
+                var e = ex.Message;
+            }
+        }
+
+        public static void TwoLockRun()
+        {
+            //for (var i = 0; i < 10; i++) 
+            //{
+            //    var h = i;
+            //    Task.Run(()=> 
+            //    {
+            //        Debug.WriteLine(h.GetHashCode());
+            //    });
+            //}
+
+            for (var i = 0; i < 10000; i++)
+            {
+                a++;
+            }
+
+            for (var i = 0; i < 10000; i++)
+            {
+                Task.Run(() => { b++; });
+            }
+
+            for (var i = 0; i < 10000; i++)
+            {
+                Task.Run(() => { c.Add(i); });
+            }
+
+            Thread.Sleep(5000);
+            Debug.WriteLine(a);
+            Debug.WriteLine(b);
+            Debug.WriteLine(c.Count);
+        }
+
+        public static int a;
+
+        public static int b;
+
+        public static List<int> c = new List<int>();
+
+        private static object DD = new object();
 
         public static int DS { get; set; }
+
+        public int DG_i = 0;
+
+
+        public void DoTest()
+        {
+            //DG_i = 0;
+            //递归 this 锁 只锁住当前线程 
+            //lock 排斥锁 同一个线程 不排斥
+            //lock (this) 
+            //{
+            //    if (DG_i < 10)
+            //    {
+            //        DG_i++;
+            //        this.DoTest();
+            //        Debug.WriteLine(DG_i);
+            //    }
+            //    else 
+            //    {
+            //        Debug.WriteLine("结束");
+            //    }
+            //}
+
+            // lock (this)
+            {
+                Test test = new Test();
+
+                // lock string  strng 字符串相同的情况下 会重复引用 堆 会重复引用同一块内存（字符串相同情况下）
+                string Name = "水煮鱼";
+                Task.Delay(1000).ContinueWith((c) =>
+                        {
+                            lock (Name)
+                            {
+                                Debug.WriteLine("开始");
+                                Thread.Sleep(4000);
+                                Debug.WriteLine("结束");
+                            }
+                        });
+                
+                test.TwDoTest();
+            }
+
+            {
+                //    lock (this)
+                //    {
+                //        //if (DG_i < 10)
+                //        //{
+                //        //    DG_i++;
+                //        //    Debug.WriteLine($"开始{DG_i}");
+                //        //    this.DoTest();
+                //        //}
+                //        //else 
+                //        //{
+                //        //    Debug.WriteLine("结束");
+                //        //}
+                //        Task.Run(() =>
+                //        {
+                //            for (var i = 0; i < 10; i++)
+                //            {
+                //                Thread.Sleep(300);
+                //                Debug.WriteLine($"开始A{i}");
+                //            }
+                //        });
+
+                //    }
+
+                //    lock (this)
+                //    {
+                //        //if (DG_i < 10)
+                //        //{
+                //        //    DG_i++;
+                //        //    Debug.WriteLine($"开始{DG_i}");
+                //        //    this.DoTest();
+                //        //}
+                //        //else 
+                //        //{
+                //        //    Debug.WriteLine("结束");
+                //        //}
+
+                //        Task.Run(() =>
+                //        {
+                //            for (var i = 0; i < 10; i++)
+                //            {
+                //                Thread.Sleep(300);
+                //                Debug.WriteLine($"开始B{i}");
+                //            }
+                //        });
+                //    }
+
+                //    Task.Run(() =>
+                //    {
+                //        lock (this)
+                //        {
+                //            //if (DG_i < 10)
+                //            //{
+                //            //    DG_i++;
+                //            //    Debug.WriteLine($"开始{DG_i}");
+                //            //    this.DoTest();
+                //            //}
+                //            //else 
+                //            //{
+                //            //    Debug.WriteLine("结束");
+                //            //}
+
+                //            for (var i = 0; i < 10; i++)
+                //            {
+                //                Thread.Sleep(300);
+                //                Debug.WriteLine($"开始{i}");
+                //            }
+                //        }
+                //    });
+
+                //    Task.Run(() =>
+                //    {
+                //        lock (this)
+                //        {
+                //            //if (DG_i < 10)
+                //            //{
+                //            //    DG_i++;
+                //            //    Debug.WriteLine($"开始{DG_i}");
+                //            //    this.DoTest();
+                //            //}
+                //            //else 
+                //            //{
+                //            //    Debug.WriteLine("结束");
+                //            //}
+
+                //            for (var i = 0; i < 10; i++)
+                //            {
+                //                Thread.Sleep(300);
+                //                Debug.WriteLine($"开始{i}");
+                //            }
+                //        }
+                //    });
+            }
+        }
+
+        public class Test
+        {
+            public int DG_i = 0;
+
+            // string 在内存分配上是重复的
+            public string Name = "水煮鱼";
+
+            public void DoTest()
+            {
+                //DG_i = 0;
+                //递归 this 锁 只锁住当前线程 
+                //lock 排斥锁 同一个线程 不排斥
+                lock (this)
+                {
+                    Thread.Sleep(500);
+                    if (DG_i < 10)
+                    {
+                        DG_i++;
+                        Debug.WriteLine(DG_i);
+                        this.DoTest();
+                    }
+                    else
+                    {
+                        Debug.WriteLine("结束");
+                    }
+                }
+
+            }
+
+            public void TwDoTest()
+            {
+                lock (Name)
+                {
+                    Thread.Sleep(500);
+                    if (DG_i < 10)
+                    {
+                        DG_i++;
+                        Debug.WriteLine(DG_i);
+                        this.TwDoTest();
+                    }
+                    else
+                    {
+                        Debug.WriteLine("结束");
+                    }
+                }
+            }
+        }
     }
 }
