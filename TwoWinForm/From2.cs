@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace TwoWinForm
 {
-    class From2
+    public class From2
     {
+
     }
 }

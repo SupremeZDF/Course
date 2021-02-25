@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using System.Threading;
+using TwoWinForm.Encryt;
 
 namespace TwoWinForm
 {
@@ -94,13 +95,17 @@ namespace TwoWinForm
                     //长度32，每个位置有16种可能  2的4*32次方  2的128次方   不可能全部存储
                     //MD5加盐  应对简单密码破解 123456+ruanmou   MD5再MD5
                     //原文更多，不止的2的128次方，那是不是应该有两个原文，MD5后结果一致？ 肯定的，但是还没发现
-                    Console.WriteLine(MD5Encrypt.Encrypt("1"));
-                    Console.WriteLine(MD5Encrypt.Encrypt("1"));
-                    Console.WriteLine(MD5Encrypt.Encrypt("123456小李"));
-                    Console.WriteLine(MD5Encrypt.Encrypt("113456小李"));
-                    Console.WriteLine(MD5Encrypt.Encrypt("113456小李113456小李113456小李113456小李113456小李113456小李113456小李"));
-                    string md5Abstract1 = MD5Encrypt.AbstractFile(@"D:\ruanmou\online12\20190116Advanced12Course18Homework3\20190116Advanced12Course18Homework3 - 副本.rar");
-                    string md5Abstract2 = MD5Encrypt.AbstractFile(@"D:\ruanmou\online12\20190116Advanced12Course18Homework3\20190116Advanced12Course18Homework3.rar");
+
+
+                    //Console.WriteLine(MD5Encrypt.Encrypt("1"));
+                    //Console.WriteLine(MD5Encrypt.Encrypt("1"));
+                    //Console.WriteLine(MD5Encrypt.Encrypt("123456小李"));
+                    //Console.WriteLine(MD5Encrypt.Encrypt("113456小李"));
+                    //Console.WriteLine(MD5Encrypt.Encrypt("113456小李113456小李113456小李113456小李113456小李113456小李113456小李"));
+                    //string md5Abstract1 = MD5Encrypt.AbstractFile(@"D:\ruanmou\online12\20190116Advanced12Course18Homework3\20190116Advanced12Course18Homework3 - 副本.rar");
+                    //string md5Abstract2 = MD5Encrypt.AbstractFile(@"D:\ruanmou\online12\20190116Advanced12Course18Homework3\20190116Advanced12Course18Homework3.rar");
+                   
+                    
                     //MD5的用途？
                     //1 防篡改：
                     //发个文档，事先给别人一个MD5，是文档的摘要，
@@ -123,10 +128,11 @@ namespace TwoWinForm
                     //对称可逆加密：加密后能解密回原文，加密key和解密key是一个
                     //加密算法都是公开的，密钥是保密的， 即使拿到密文  你是推算不了密钥  也推算不了原文
                     //加密解密的速度快，问题是密钥的安全
-                    string desEn = DesEncrypt.Encrypt("王殃殃");
-                    string desDe = DesEncrypt.Decrypt(desEn);
-                    string desEn1 = DesEncrypt.Encrypt("张三李四");
-                    string desDe1 = DesEncrypt.Decrypt(desEn1);
+
+                    //string desEn = DesEncrypt.Encrypt("王殃殃");
+                    //string desDe = DesEncrypt.Decrypt(desEn);
+                    //string desEn1 = DesEncrypt.Encrypt("张三李四");
+                    //string desDe1 = DesEncrypt.Decrypt(desEn1);
                 }
                 #endregion 
 
@@ -139,9 +145,10 @@ namespace TwoWinForm
                     //公开解密key，保证数据的不可抵赖
                     //公钥就是公开的key  私钥就是不公开的key
                     //C#内置实现了公钥加密  私钥解密；想换需要用第三方的DLL-BouncyCastle
-                    KeyValuePair<string, string> encryptDecrypt = RsaEncrypt.GetKeyPair();
-                    string rsaEn1 = RsaEncrypt.Encrypt("net", encryptDecrypt.Key);
-                    string rsaDe1 = RsaEncrypt.Decrypt(rsaEn1, encryptDecrypt.Value);
+
+                    //KeyValuePair<string, string> encryptDecrypt = RsaEncrypt.GetKeyPair();
+                    //string rsaEn1 = RsaEncrypt.Encrypt("net", encryptDecrypt.Key);
+                    //string rsaDe1 = RsaEncrypt.Decrypt(rsaEn1, encryptDecrypt.Value);
                 }
                 #endregion
 
@@ -156,7 +163,8 @@ namespace TwoWinForm
             //p.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Ebcrypt());
+            Application.Run(new Form4());
+
 
 
             // 释放
