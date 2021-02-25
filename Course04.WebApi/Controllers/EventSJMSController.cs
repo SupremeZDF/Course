@@ -125,14 +125,16 @@ namespace Course04.WebApi.Controllers
         [HttpGet]
         public void RunReflection()
         {
-            Assembly assembly = Assembly.Load("Course04.Model");
-            var da = assembly.GetTypes().Where(i => i.Namespace == "Course04.Model.DesignRemote" && i.BaseType != null && i.BaseType.Name == "KoujPerform").ToList();
-
-            var c = assembly.GetType("Course04.Model.DesignRemote.NorthShow").GetInterfaces();
-            var cc = assembly.GetType("Course04.Model.DesignRemote.NorthShow").BaseType.Name;
-            foreach (var i in da)
             {
+                Assembly assembly = Assembly.Load("Course04.Model");
+                var da = assembly.GetTypes().Where(i => i.Namespace == "Course04.Model.DesignRemote" && i.BaseType != null && i.BaseType.Name == "KoujPerform").ToList();
 
+                var c = assembly.GetType("Course04.Model.DesignRemote.NorthShow").GetInterfaces(); ;
+                var cc = assembly.GetType("Course04.Model.DesignRemote.NorthShow").BaseType.Name;
+                foreach (var i in da)
+                {
+
+                }
             }
 
             try

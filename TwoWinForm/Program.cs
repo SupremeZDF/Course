@@ -68,7 +68,7 @@ namespace TwoWinForm
             //p.Start();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new From4());
+            Application.Run(new Ebcrypt());
 
 
             // 释放

@@ -94,6 +94,7 @@ namespace Course04.Model.DesignRemote
         public virtual void ShowEnd()
         {
             Console.WriteLine("表演结束");
+          
         }
     }
 

@@ -12,7 +12,7 @@ namespace Course04.Model.ExperssionExercise
         public static Func<TIn, TOut> Func = null;
         static ExpressGenericFunc() 
         {
-            ParameterExpression parameter = Expression.Parameter(typeof(TIn), "x");
+            ParameterExpression parameter = Expression.Parameter(typeof(TIn), "x") ;
             List<MemberBinding> members = new List<MemberBinding>();
             //PropertyInfo[] propertyInfos = typeof(TOut).GetProperties().Where(x => x.GetCustomAttribute(typeof(ExpressGenericFuncAttrbuteTool),true) != null).ToArray();
             foreach (PropertyInfo into in typeof(TOut).GetProperties()) 

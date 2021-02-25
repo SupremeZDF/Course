@@ -49,6 +49,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwoWinForm", "TwoWinForm\Tw
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{5A07A5E3-B35B-46A4-A66A-F5852E3CD6B0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadHomeWork", "ThreadHomeWork\ThreadHomeWork.csproj", "{32435415-B5B3-455E-9D8C-6C3B4C78554A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -123,6 +125,10 @@ Global
 		{5A07A5E3-B35B-46A4-A66A-F5852E3CD6B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A07A5E3-B35B-46A4-A66A-F5852E3CD6B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A07A5E3-B35B-46A4-A66A-F5852E3CD6B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32435415-B5B3-455E-9D8C-6C3B4C78554A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32435415-B5B3-455E-9D8C-6C3B4C78554A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32435415-B5B3-455E-9D8C-6C3B4C78554A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32435415-B5B3-455E-9D8C-6C3B4C78554A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -145,6 +151,7 @@ Global
 		{58459980-A39F-4BED-89B0-9F73B5F5249F} = {F8B8FDE6-75AC-4A60-A893-1522DFF61783}
 		{B9BD15B8-47E0-438D-BDDA-0BF7B62A315D} = {C549AB06-8D9D-4B01-BF4B-84A72AB23374}
 		{5A07A5E3-B35B-46A4-A66A-F5852E3CD6B0} = {C549AB06-8D9D-4B01-BF4B-84A72AB23374}
+		{32435415-B5B3-455E-9D8C-6C3B4C78554A} = {C549AB06-8D9D-4B01-BF4B-84A72AB23374}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E602CCFD-2351-4E72-80B5-1FBD3B12238B}

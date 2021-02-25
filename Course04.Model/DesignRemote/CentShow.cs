@@ -42,6 +42,8 @@ namespace Course04.Model.DesignRemote
         public virtual void ShowEnd()
         {
             Console.WriteLine("中部表演结束");
+
+            //ShowGC.Invoke();
         }
 
         public void JHShowContent()
