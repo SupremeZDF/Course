@@ -44,7 +44,7 @@ namespace TwoWinForm
         /// 应用程序的主入口点。
         /// </summary>
         //[STAThread]
-        static void Main()
+        static  void Main()
         {
             //Student student = new Student() { ID = 1, Name = "12" };
 

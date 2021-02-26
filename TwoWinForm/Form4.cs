@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
+using System.Diagnostics;
+using System.Threading;
 
 namespace TwoWinForm
 {
@@ -121,6 +123,52 @@ namespace TwoWinForm
             {
                 throw ex2;
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button3_Click(object sender, EventArgs e)
+        {
+             ExerCise();
+             Thread.Sleep(10000);
+            //Debug.WriteLine($"Start Start {Thread.CurrentThread.ManagedThreadId}");
+        }
+
+        public async Task ExerCise() 
+        {
+            OneRunName();
+            //Thread.Sleep(10000);
+            Debug.WriteLine($"主 {Thread.CurrentThread.ManagedThreadId}");
+        }
+
+        public async Task OneRunName() 
+        {
+            Debug.WriteLine($"Start {Thread.CurrentThread.ManagedThreadId}");
+            var task = Task.Run(() => 
+            {
+
+                Debug.WriteLine($"For End {Thread.CurrentThread.ManagedThreadId}");
+                for (var i = 0; i < 5; i++) 
+                {
+                    Debug.WriteLine(i);
+                     Thread.Sleep(1000);
+                }
+                return "11";
+            });
+
+            await task;
+
+           
+
+            //task.ContinueWith(s=> 
+            //{
+                Debug.WriteLine($"End {Thread.CurrentThread.ManagedThreadId}");
+            //});
+
+            //return await task;
         }
     }
 }
