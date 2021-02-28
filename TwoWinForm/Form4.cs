@@ -36,10 +36,10 @@ namespace TwoWinForm
                 //    strResult += strTemp;
                 //}
 
-                byte [] ds = { 255 };
+                byte[] ds = { 255 };
 
                 //var t = Encoding.uni.GetString(ds);
-                
+
 
                 var d = "A";
                 var by = Encoding.UTF8.GetBytes(d);
@@ -54,7 +54,7 @@ namespace TwoWinForm
                 {
                     var dd = Convert.ToString(i, 2);
                     //var ii = Convert.ToByte(dd);
-                    var ii = Convert.ToByte(dd,2);
+                    var ii = Convert.ToByte(dd, 2);
                 }
             }
 
@@ -62,7 +62,7 @@ namespace TwoWinForm
                 var dd = " AA";
                 var be = Encoding.UTF8.GetBytes(dd);
 
-               
+
 
                 foreach (var i in be)
                 {
@@ -72,9 +72,9 @@ namespace TwoWinForm
                     var b = i.ToString("X");
                     b = i.ToString("x");
 
-                    var c = Convert.ToString(i,2);
+                    var c = Convert.ToString(i, 2);
                 }
-               
+
             }
 
             {
@@ -97,7 +97,7 @@ namespace TwoWinForm
         {
             rsaPKCS1SignatureDeformatter = new RSAPKCS1SignatureDeformatter();
 
-            InitSign(@"D:\学习\架构版班_学习课程\Course1\TwoWinForm\Encryt\test.pfx", "cfca1234");  //私钥加密
+            InitSign(@"D:\学习\eEncrypt\CA_证书\IIS\supremezdf.xyz.pfx", "65nfe4bpx43");  //私钥加密
         }
         // Token: 0x04000233 RID: 563
         private static RSAPKCS1SignatureFormatter rsaPKCS1SignatureFormatter;
@@ -109,11 +109,20 @@ namespace TwoWinForm
         {
             try
             {
-                RSACryptoServiceProvider key = new RSACryptoServiceProvider();
-                rsaPKCS1SignatureFormatter = new RSAPKCS1SignatureFormatter(key);
-                X509Certificate2 x509Certificate = new X509Certificate2(keystoreFile, keystorePass, X509KeyStorageFlags.MachineKeySet);
-                rsaPKCS1SignatureFormatter.SetKey(x509Certificate.PrivateKey);
-                rsaPKCS1SignatureFormatter.SetHashAlgorithm("SHA1");
+                {
+                    X509Certificate2 x509Certificate = new X509Certificate2(@"D:\学习\架构版班_学习课程\Course1\TwoWinForm\Encryt\paytest.cer");
+                    string xmlString = x509Certificate.PublicKey.Key.ToXmlString(false);
+                    RSACryptoServiceProvider rsacryptoServiceProvider = new RSACryptoServiceProvider();
+                    rsacryptoServiceProvider.FromXmlString(xmlString);
+                }
+                {
+                    RSACryptoServiceProvider key = new RSACryptoServiceProvider();
+                    rsaPKCS1SignatureFormatter = new RSAPKCS1SignatureFormatter(key);
+                    X509Certificate2 x509Certificate = new X509Certificate2(keystoreFile, keystorePass, X509KeyStorageFlags.MachineKeySet);
+                    rsaPKCS1SignatureFormatter.SetKey(x509Certificate.PrivateKey);
+                    rsaPKCS1SignatureFormatter.SetHashAlgorithm("SHA1");
+                }
+
             }
             catch (CryptographicException ex)
             {
@@ -124,51 +133,93 @@ namespace TwoWinForm
                 throw ex2;
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void button3_Click(object sender, EventArgs e)
+        private async void button3_Click(object sender, EventArgs e)
         {
-             ExerCise();
-             Thread.Sleep(10000);
+            await ExerCise();
+            //Thread.Sleep(10000);
             //Debug.WriteLine($"Start Start {Thread.CurrentThread.ManagedThreadId}");
         }
 
-        public async Task ExerCise() 
+        public async Task ExerCise()
         {
-            OneRunName();
+            await OneRunName();
+
+            Thread.Sleep(4000);
+            //await ToExercise();
+
             //Thread.Sleep(10000);
             Debug.WriteLine($"主 {Thread.CurrentThread.ManagedThreadId}");
+            //return a;
         }
 
-        public async Task OneRunName() 
+        public async Task<int> ToExercise()
+        {
+            var task = Task.Run(() =>
+            {
+                Thread.Sleep(2000);
+            });
+
+            await task;
+
+
+            Task.Run(() => 
+            {
+                Debug.WriteLine($"End  {Thread.CurrentThread.ManagedThreadId}");
+                for (var i = 0; i < 5; i++)
+                {
+                    Thread.Sleep(1000);
+                    Debug.WriteLine("1");
+                }
+            });
+
+            return 1;
+   
+            //return null;
+        }
+
+        public async Task OneRunName()
         {
             Debug.WriteLine($"Start {Thread.CurrentThread.ManagedThreadId}");
-            var task = Task.Run(() => 
+            var task = Task.Run(() =>
             {
 
                 Debug.WriteLine($"For End {Thread.CurrentThread.ManagedThreadId}");
-                for (var i = 0; i < 5; i++) 
+                for (var i = 0; i < 5; i++)
                 {
                     Debug.WriteLine(i);
-                     Thread.Sleep(1000);
+                    Thread.Sleep(1000);
                 }
                 return "11";
             });
 
             await task;
 
-           
+            Task.Run(() =>
+            {
+                Debug.WriteLine($"End {Thread.CurrentThread.ManagedThreadId}");
+                Thread.Sleep(4000);
+                Debug.WriteLine($"End {Thread.CurrentThread.ManagedThreadId}");
+            });
+            Thread.Sleep(4000);
 
             //task.ContinueWith(s=> 
             //{
-                Debug.WriteLine($"End {Thread.CurrentThread.ManagedThreadId}");
+            Debug.WriteLine($"End {Thread.CurrentThread.ManagedThreadId}");
             //});
 
             //return await task;
+        }
+
+        private async void button4_Click(object sender, EventArgs e)
+        {
+            Debug.WriteLine($"Start  {Thread.CurrentThread.ManagedThreadId}");
+            var i = ToExercise().Result;
         }
     }
 }

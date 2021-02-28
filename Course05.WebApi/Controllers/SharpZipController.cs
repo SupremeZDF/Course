@@ -15,7 +15,7 @@ namespace Course05.WebApi.Controllers
     public class SharpZipController : ControllerBase
     {
         [HttpGet]
-        public void OneSharpZip() 
+        public void OneSharpZip()
         {
             OneICSharpCode.CreateFloder("");
             OneICSharpCode.copyZipFile();
@@ -37,12 +37,41 @@ namespace Course05.WebApi.Controllers
         }
 
         [HttpPost]
-        public void TwoSharpZip() 
+        public void Await()
+        {
+            Console.WriteLine($"Start {Thread.CurrentThread.ManagedThreadId}");
+            Async().Wait();
+        }
+
+
+        public static async Task Async()
+        {
+            //var ResultFromTimeConsumingMethod = ResultFromTimeConsumingMethod().ConfigureAwait(false);
+            var task = Task.Run(() =>
+            {
+                Thread.Sleep(2000);
+            });
+
+            await task;
+            //Task.Run(()=> 
+            //{
+            Console.WriteLine($"End {Thread.CurrentThread.ManagedThreadId}");
+            for (var i = 0; i < 5; i++)
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("1");
+            }
+            //});
+
+        }
+
+        [HttpPost]
+        public void TwoSharpZip()
         {
             Course05.Model.ICSharpCodes.SharpZip.TwoSharpZip.UnZip(@"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\UNZIP\9d6cb535-a534-4e08-8a3b-a827ea573295.zip",
-                @"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\UNZIP","123",true);
+                @"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\UNZIP", "123", true);
             Course05.Model.ICSharpCodes.SharpZip.TwoSharpZip.ZipFile(@"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\ZIP\d3002207-7489-4c2f-a090-ba0f29c8c60c.pdf",
-                @$"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\UNZIP\{Guid.NewGuid().ToString()}.zip",2,1024);
+                @$"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\UNZIP\{Guid.NewGuid().ToString()}.zip", 2, 1024);
             Course05.Model.ICSharpCodes.SharpZip.TwoSharpZip.ZipFile(@"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\ZIP\d3002207-7489-4c2f-a090-ba0f29c8c60c.pdf",
                 @$"D:\DownloadFileFTP\DownloadESignProveZIP\20210126\UNZIP\{Guid.NewGuid().ToString()}.zip", 9, 1024);
         }

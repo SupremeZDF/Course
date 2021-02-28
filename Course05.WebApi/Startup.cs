@@ -59,7 +59,7 @@ namespace Course05.WebApi
                 c.IncludeXmlComments(cc);
                 var d = Directory.GetDirectories("./");
 
-                var dd = Directory.GetDirectories("");
+                //var dd = Directory.GetDirectories("");
 
                 //var dd = Directory.GetDirectories("/");
 
