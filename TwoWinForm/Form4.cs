@@ -218,8 +218,50 @@ namespace TwoWinForm
 
         private async void button4_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine($"Start  {Thread.CurrentThread.ManagedThreadId}");
-            var i = ToExercise().Result;
+            //Debug.WriteLine($"Start  {Thread.CurrentThread.ManagedThreadId}");
+            //var i = ToExercise().Result;
+
+            await A();
+            for (var i = 0; i < 5; i++)
+            {
+                Thread.Sleep(1000);
+            }
+        }
+
+        public async Task A() 
+        {
+            B();
+            for (var i = 0; i < 5; i++)
+            {
+                Thread.Sleep(1000);
+            }
+        }
+
+        public async Task B()
+        {
+            await C();
+            for (var i = 0; i < 5; i++)
+            {
+                Thread.Sleep(1000);
+            }
+        }
+
+        public async Task C()
+        {
+            Task task = Task.Run(() => 
+            {
+                for (var i = 0; i < 5; i++)
+                {
+                    Thread.Sleep(1000);
+                }
+            });
+
+            await task;
+
+            for (var i = 0; i < 5; i++)
+            {
+                Thread.Sleep(1000);
+            }
         }
     }
 }
